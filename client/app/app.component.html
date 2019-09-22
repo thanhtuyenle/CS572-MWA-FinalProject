@@ -57,9 +57,13 @@
       <mat-icon class="icon">home</mat-icon>
         <span class="label">Home</span>
     </a>
-    <a mat-list-item>
-      <mat-icon class="icon">dashboard</mat-icon>
-      <span class="label">Dashboard</span>
+    <a mat-list-item routerLink="/cars" routerLinkActive="active" >
+      <mat-icon class="icon">input</mat-icon>
+      <span class="label">Cars</span>
+    </a>
+    <a mat-list-item routerLink="/cars" routerLinkActive="active" >
+      <mat-icon class="icon"></mat-icon>
+      <span class="label">User Cars</span>
     </a>
     <a  mat-list-item type="button" routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
       <mat-icon class="icon">input</mat-icon>
@@ -94,9 +98,16 @@
               </a>
             </li>
             <li>
-                <a>
-                    <mat-icon class="icon">dashboard</mat-icon>
-                    <span class="label">Dashboard</span>
+                <a routerLink="/cars" routerLinkActive="active">
+                    <mat-icon class="icon">Cars</mat-icon>
+                    <span class="label">Cars</span>
+                </a>
+              </li>
+
+              <li>
+                <a routerLink="/cars" routerLinkActive="active">
+                    <mat-icon class="icon"></mat-icon>
+                    <span class="label">User Cars</span>
                 </a>
               </li>
             <li>
