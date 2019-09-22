@@ -13,6 +13,21 @@ import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatSidenavModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatListModule,
+  MatCardModule,
+  MatButtonModule,
+  MatTableModule,
+  MatDialogModule,
+  MatInputModule,
+  MatSelectModule,
+} from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
+
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -28,8 +43,22 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     HttpClientModule,
+    // imports UI modules
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatListModule,
+    FlexLayoutModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+
     AppRoutingModule,
     SharedModule,
     JwtModule.forRoot({
@@ -39,6 +68,17 @@ export function tokenGetter() {
       }
     })
   ],
+  exports:[
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatListModule],
   providers: [UserService,AuthService],
   bootstrap: [AppComponent]
 })
