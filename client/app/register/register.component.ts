@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
-import { ErrorStateMatcher } from '@angular/material';
+// import { ErrorStateMatcher } from '@angular/material';
 
 @Component({
   selector: 'app-register',
