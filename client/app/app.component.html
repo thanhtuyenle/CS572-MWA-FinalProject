@@ -12,23 +12,19 @@
           <a routerLink="/" class="nav-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
             <i class="fa fa-home"></i> Home
           </a>
-        </li> -->
-        <!-- <li class="nav-item">
-          <a routerLink="/cats" class="nav-link" routerLinkActive="active">
-            <i class="fa fa-list"></i> Cats
+        </li>
+        <li class="nav-item">
+          <a routerLink="/cars" class="nav-link" routerLinkActive="active">
+            <i class="fa fa-list"></i> Cars
           </a>
-        </li> -->
-       <!-- <li class="nav-item">
+        </li>
+        <li class="nav-item">
           <a routerLink="/login" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn">
             <i class="fa fa-sign-in"></i> Login
           </a>
         </li>
         <li class="nav-item">
-          <a routerLink="/register" class="nav-link" routerLinkActive="active" *ngIf="!auth.loggedIn"> 
             <i class="fa fa-user-plus"></i> Register
-          </a>
-        </li>
-        <li class="nav-item">
           <a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
             <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
           </a>
