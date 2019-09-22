@@ -11,7 +11,9 @@ import { User } from '../shared/models/user.model';
 // import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   loggedIn = false;
   isAdmin = false;

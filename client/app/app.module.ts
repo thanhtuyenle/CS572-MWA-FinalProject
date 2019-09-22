@@ -11,6 +11,8 @@ import { SharedModule } from './shared/shared.module';
 //services
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
@@ -25,6 +27,9 @@ export function tokenGetter() {
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     AppRoutingModule,
     SharedModule,
     JwtModule.forRoot({
