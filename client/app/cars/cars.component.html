@@ -30,7 +30,7 @@
             <button class="btn btn-sm btn-primary" (click)="enableEditing(car)">
               <i class="fa fa-pencil"></i> Edit
             </button> 
-            <button class="btn btn-sm btn-danger ml-1" (click)="deletecar(car)">
+            <button class="btn btn-sm btn-danger ml-1" (click)="deleteCar(car)">
               <i class="fa fa-trash"></i> Delete
             </button>
           </td>
@@ -39,7 +39,7 @@
       <tbody *ngIf="isEditing">
         <tr>
           <td colspan="4">
-            <form class="form-inline" #form="ngForm" (ngSubmit)="editcar(car)">
+            <form class="form-inline" #form="ngForm" (ngSubmit)="editCar(car)">
               <!-- <input class="form-control mr-2" type="text" name="name"
                      [(ngModel)]="car.make" placeholder="Make" required> -->
               <input class="form-control mr-2" type="number" name="year"
@@ -65,7 +65,7 @@
 <div class="card" *ngIf="!isEditing">
   <h4 class="card-header">Add new car</h4>
   <div class="card-body">
-    <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addcar()">
+    <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addCar()">
       <!-- <input class="form-control mr-2" type="text" name="name"
              formControlName="make" placeholder="Make"> -->
       <input class="form-control mr-2" type="number" name="year"
