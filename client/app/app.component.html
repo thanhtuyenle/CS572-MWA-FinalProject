@@ -61,6 +61,10 @@
       <mat-icon class="icon">dashboard</mat-icon>
       <span class="label">Dashboard</span>
     </a>
+    <a mat-list-item>
+      <mat-icon class="icon">cars</mat-icon>
+      <span class="label">Cars</span>
+    </a>
     <a  mat-list-item type="button" routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
       <mat-icon class="icon">input</mat-icon>
       <span class="label">LogOut</span>
@@ -99,6 +103,12 @@
                     <span class="label">Dashboard</span>
                 </a>
               </li>
+            <li>
+              <a routerLink="/cars" routerLinkActive="active" *ngIf="auth.loggedIn">
+                  <mat-icon class="icon">cars</mat-icon>
+                  <span class="label">Cars</span>
+              </a>
+            </li>
             <li>
                 <a routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
                   <mat-icon class="icon">input</mat-icon>
