@@ -20,6 +20,7 @@ import { LogoutComponent } from './logout/logout.component';
 import { RegisterComponent } from './register/register.component';
 import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
+import { CarService } from './services/car.service';
 
 
 export function tokenGetter() {
@@ -49,7 +50,7 @@ export function tokenGetter() {
       }
     })
   ],
-  providers: [UserService,AuthService,AuthGuardLogin],
+  providers: [UserService,AuthService,AuthGuardLogin, CarService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
