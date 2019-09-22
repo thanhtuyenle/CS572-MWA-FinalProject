@@ -61,13 +61,9 @@
       <mat-icon class="icon">input</mat-icon>
       <span class="label">Cars</span>
     </a>
-    <a mat-list-item routerLink="/cars" routerLinkActive="active" >
+    <a mat-list-item routerLink="/usercars" routerLinkActive="active" >
       <mat-icon class="icon"></mat-icon>
       <span class="label">User Cars</span>
-    </a>
-    <a mat-list-item>
-      <mat-icon class="icon">cars</mat-icon>
-      <span class="label">Cars</span>
     </a>
     <a  mat-list-item type="button" routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
       <mat-icon class="icon">input</mat-icon>
@@ -109,7 +105,7 @@
               </li>
 
               <li>
-                <a routerLink="/cars" routerLinkActive="active">
+                <a routerLink="/usercars" routerLinkActive="active">
                     <mat-icon class="icon"></mat-icon>
                     <span class="label">User Cars</span>
                 </a>
