@@ -10,7 +10,7 @@ import { CarService } from '../services/car.service';
 })
 export class CarsComponent implements OnInit {
 
-  Car = new Car();
+  car = new Car();
   cars: Car[] = [];
   isLoading = true;
   isEditing = false;
@@ -54,35 +54,35 @@ export class CarsComponent implements OnInit {
     );
   }
 
-  enableEditing(Car: Car) {
+  enableEditing(car: Car) {
     this.isEditing = true;
-    this.Car = Car;
+    this.car = car;
   }
 
   cancelEditing() {
     this.isEditing = false;
-    this.Car = new Car();
+    this.car = new Car();
     // this.toast.setMessage('item editing cancelled.', 'warning');
     // reload the Cars to reset the editing
     this.getCars();
   }
 
-  editCar(Car: Car) {
-    this.carService.editCar(Car).subscribe(
+  editCar(car: Car) {
+    this.carService.editCar(car).subscribe(
       () => {
         this.isEditing = false;
-        this.Car = Car;
+        this.car = car;
         // this.toast.setMessage('item edited successfully.', 'success');
       },
       error => console.log(error)
     );
   }
 
-  deleteCar(Car: Car) {
+  deleteCar(car: Car) {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
-      this.carService.deleteCar(Car).subscribe(
+      this.carService.deleteCar(car).subscribe(
         () => {
-          const pos = this.cars.map(elem => elem._id).indexOf(Car._id);
+          const pos = this.cars.map(elem => elem._id).indexOf(car._id);
           this.cars.splice(pos, 1);
           // this.toast.setMessage('item deleted successfully.', 'success');
         },
