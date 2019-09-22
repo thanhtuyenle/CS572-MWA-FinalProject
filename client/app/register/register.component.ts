@@ -1,15 +1,23 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, FormGroupDirective, NgForm } from '@angular/forms';
 import { UserService } from '../services/user.service';
 import { Router } from '@angular/router';
+import { ErrorStateMatcher } from '@angular/material';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+/** Error when the parent is invalid */
+// class CrossFieldErrorMatcher implements ErrorStateMatcher {
+//   isErrorState(control: FormControl | null, form: FormGroupDirective | NgForm | null): boolean {
+//     return control.dirty && form.invalid;
+//   }
+// }
 export class RegisterComponent implements OnInit {
-
+  public errorEmailDuplicate = false;
+  // errorMatcher = new CrossFieldErrorMatcher();
   registerForm: FormGroup;
   username = new FormControl('', [
     Validators.required,
@@ -26,6 +34,15 @@ export class RegisterComponent implements OnInit {
     Validators.required,
     Validators.minLength(6)
   ]);
+  verifyPassword = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6)
+  ]);
+  getPasswordErrorMessage() {
+    return this.registerForm.controls['password'].hasError('required') ? 'Password is required' :
+        this.registerForm.controls['password'].hasError('minlength') ? 'Required length is at least 6 characters' :
+           '';
+  }
   constructor(private formBuilder: FormBuilder,
     private router: Router,
     private userService: UserService) { }
@@ -34,13 +51,41 @@ export class RegisterComponent implements OnInit {
     this.registerForm = this.formBuilder.group({
       username: this.username,
       email: this.email,
-      password: this.password
-    });
+      password: this.password,
+      verifyPassword: this.verifyPassword
+    }
+    , {
+      validator: this.confirmPasswordValidator('password', 'verifyPassword')
+    }
+    );
   }
 
-  setClassUsername() {
-    return { 'has-danger': !this.username.pristine && !this.username.valid };
+  confirmPasswordValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
+        }
+
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
   }
+  //(form: FormGroup): { [s: string]: boolean } {
+  //   const condition = form.get('password').value !== form.get('verifyPassword').value;
+
+  //   return condition ? { passwordsDoNotMatch: true} : null;
+  // }
+  // setClassUsername() {
+  //   return { 'has-danger': !this.username.pristine && !this.username.valid };
+  // }
 
   setClassEmail() {
     return { 'has-danger': !this.email.pristine && !this.email.valid };
@@ -57,7 +102,17 @@ export class RegisterComponent implements OnInit {
         console.log('you successfully registered!');
         this.router.navigate(['/login']);
       },
-      error => console.log('email already exists') //this.toast.setMessage('email already exists', 'danger')
+      error => {
+        const formControl = this.registerForm.get('email');
+        if (formControl) {
+          // activate the error message
+          formControl.setErrors({
+            serverError: 'Email already exists!'
+          });
+        }
+        // this.errorEmailDuplicate = true;
+        // console.log('email already exists');
+      }//console.log('email already exists') //this.toast.setMessage('email already exists', 'danger')
     );
   }
 

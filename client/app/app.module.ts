@@ -11,8 +11,22 @@ import { SharedModule } from './shared/shared.module';
 //services
 import { UserService } from './services/user.service';
 import { AuthService } from './services/auth.service';
+// import { HttpClientModule } from '@angular/common/http';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {
+  MatSidenavModule,
+  MatToolbarModule,
+  MatIconModule,
+  MatListModule,
+  MatCardModule,
+  MatButtonModule,
+  MatTableModule,
+  MatDialogModule,
+  MatInputModule,
+  MatSelectModule,
+} from '@angular/material';
+import {FlexLayoutModule} from '@angular/flex-layout';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
-
 //components
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -25,6 +39,8 @@ import { AccountComponent } from './account/account.component';
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
+//   return localStorage.getItem('token');
+// }
 
 @NgModule({
   declarations: [
@@ -38,8 +54,22 @@ export function tokenGetter() {
   imports: [
     BrowserModule,
     HttpClientModule,
+    // imports UI modules
     FormsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatListModule,
+    FlexLayoutModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+
     AppRoutingModule,
     SharedModule,
     JwtModule.forRoot({
@@ -49,6 +79,18 @@ export function tokenGetter() {
       }
     })
   ],
+  exports:[
+    MatSidenavModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatButtonModule,
+    MatTableModule,
+    MatDialogModule,
+    MatInputModule,
+    MatSelectModule,
+    MatListModule],
+  // providers: [UserService,AuthService],
   providers: [UserService,AuthService,AuthGuardLogin],
   bootstrap: [AppComponent]
 })
