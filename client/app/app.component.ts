@@ -4,10 +4,6 @@ import { AuthService } from './services/auth.service';
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
-  // template: `
-  // <app-login>Login</app-login>
-  // <app-register>Register</app-register>
-  // `
 })
 export class AppComponent  implements AfterViewChecked {
   title = 'carmanagement';
