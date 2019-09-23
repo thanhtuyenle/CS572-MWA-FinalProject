@@ -7,9 +7,11 @@ import { LogoutComponent } from './logout/logout.component';
 import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
+import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
  
+  { path: '', component: HomeComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
