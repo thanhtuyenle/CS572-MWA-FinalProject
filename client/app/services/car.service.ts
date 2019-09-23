@@ -27,6 +27,9 @@ export class CarService {
     return this.http.post<Car>('/api/car', car);
   }
 
+  searchCars(makeId, modelId, zipcode): Observable<Car> {
+    return this.http.get<Car>(`/api/cars/${makeId}/${modelId}/${zipcode}`);
+  }
   getCar(car: Car): Observable<Car> {
     return this.http.get<Car>(`/api/car/${car._id}`);
   }

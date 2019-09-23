@@ -26,8 +26,8 @@
                         <mat-form-field>
                             <mat-label>Select make</mat-label>
                             <mat-select formControlName="make" name="make" >
-                                <mat-option value="All">All</mat-option>
-                                <mat-option *ngFor="let mk of allMakes" [value]="mk"> {{ mk.name }}</mat-option>
+                                <mat-option value="ALL">All</mat-option>
+                                <mat-option *ngFor="let mk of allMakes" [value]="mk._id"> {{ mk.name }}</mat-option>
                                 <!-- <mat-option value="option2">Option 2</mat-option>
                                 <mat-option value="option3">Option 3</mat-option> -->
                             </mat-select>
@@ -37,8 +37,8 @@
                         <mat-form-field>
                                 <mat-label>Select model</mat-label>
                                 <mat-select formControlName="model">
-                                    <mat-option value="All">All</mat-option>
-                                    <mat-option *ngFor="let md of allModels" [value]="md"> {{ md.name }}</mat-option>
+                                    <mat-option value="ALL">All</mat-option>
+                                    <mat-option *ngFor="let md of allModels" [value]="md._id"> {{ md.name }}</mat-option>
                                     <!-- <mat-option value="option1">Option 1</mat-option>
                                     <mat-option value="option2">Option 2</mat-option>
                                     <mat-option value="option3">Option 3</mat-option> -->

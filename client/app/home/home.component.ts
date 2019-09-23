@@ -50,8 +50,15 @@ export class HomeComponent implements OnInit {
       () => {console.log('loaded all cars')}
     );
   }
-
   search() {
-    this.getCars()
+    // this.getCars()
+    this.carService.searchCars(this.searchCarForm.get('make').value,
+     this.searchCarForm.get('model').value, this.searchCarForm.get('zipcode').value
+    ).subscribe(
+      data => { this.cars = data;
+      console.dir(data)},
+      error => console.dir(error),
+      () => {console.log('loaded search cars')}
+    );
   }
 }
