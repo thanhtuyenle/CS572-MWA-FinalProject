@@ -23,7 +23,7 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 mongoose.Promise = global.Promise;
-mongoose.connect(mongodbURI)
+mongoose.connect(mongodbURI,  { useFindAndModify: false })
   .then(db => {
     console.log('Connected to MongoDB');
 

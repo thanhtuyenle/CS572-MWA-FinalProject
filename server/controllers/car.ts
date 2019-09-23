@@ -21,5 +21,44 @@ export default class CarCtrl extends BaseCtrl {
       return res.status(500).json({ error: err.message });
     }
   }
-
+  // update by id
+  saveFollower = async (req, res) => {
+    // console.log('save car for user')
+    // console.dir(req)
+    try {
+      await this.model.findOneAndUpdate({ _id: req.params.cid }, {
+        "$push": {"followers": req.body}
+      });
+      res.sendStatus(200);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+  unsaveFollower = async (req, res) => {
+    try {
+      await this.model.findOneAndUpdate({ _id: req.params.cid }, {
+        "$pull": {"followers": {"_id": req.params.uid}}
+      });
+      res.sendStatus(200);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
+  // get list cars by uid
+  getCarsByFollower = async (req, res) => {
+    try {
+      const docs = await this.model.find({ "followers": 
+        {$elemMatch: 
+          {"_id":req.params.uid}
+        }
+      }
+      // , {
+      //   "followers": -1
+      // }
+      );
+      res.status(200).json(docs);
+    } catch (err) {
+      return res.status(400).json({ error: err.message });
+    }
+  }
 }

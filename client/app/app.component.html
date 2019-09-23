@@ -89,7 +89,6 @@
      </div>
      <div fxFlex fxLayout fxLayoutAlign="flex-end"  fxHide.xs>
         <ul fxLayout fxLayoutGap="20px" class="navigation-items">
-            
             <li>
               <a  routerLink="/">
                   <mat-icon class="icon">home</mat-icon>
@@ -104,20 +103,32 @@
             </li>
             <li>
               <a routerLink="/usercars" routerLinkActive="active">
-                  <mat-icon class="icon"></mat-icon>
+                  <mat-icon class="icon">directions_car</mat-icon>
                   <span class="label">User Cars</span>
               </a>
             </li>
-            <li>
-              <a mat-list-item  routerLink="/account" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <li *ngIf="auth.loggedIn">
+              <a routerLink="/favorite" routerLinkActive="active">
+                  <mat-icon class="icon" matBadge="15" matBadgeColor="warn">stars</mat-icon>
+                  <span class="label"></span>
+              </a>
+            </li>
+            <li *ngIf="auth.loggedIn">
+              <a mat-list-item  routerLink="/account" routerLinkActive="active">
                 <mat-icon class="icon">account_circle</mat-icon> {{auth.currentUser.username}}
               </a>
             </li>
-            <li>
-                <a routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
+            <li *ngIf="auth.loggedIn">
+                <a routerLink="/logout" routerLinkActive="active">
                   <mat-icon class="icon">input</mat-icon>
                   <span class="label">LogOut</span>
                  </a>
+            </li>
+            <li *ngIf="!auth.loggedIn">
+              <a mat-list-item routerLink="/login" routerLinkActive="active">
+                <mat-icon class="icon">input</mat-icon>
+                <span class="label">Login</span>
+              </a>
             </li>
         </ul>
      </div>
