@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms'
 import { CarService } from '../services/car.service';
 import { Make } from '../shared/models/make.model';
 import { Model } from '../shared/models/model.model';
+import { Car } from '../shared/models/car.model';
 
 @Component({
   selector: 'app-home',
@@ -13,7 +14,7 @@ export class HomeComponent implements OnInit {
   searchCarForm: FormGroup
   allMakes: Make[] = []
   allModels: Model[] = []
-  cars = []
+  cars: Car[] = []
   constructor(private carService: CarService, private formBuilder: FormBuilder)  { }
 
   zipcode = new FormControl('', [
@@ -51,7 +52,8 @@ export class HomeComponent implements OnInit {
     );
   }
   search() {
-    // this.getCars()
+     //this.getCars()
+
     this.carService.searchCars(this.searchCarForm.get('make').value,
      this.searchCarForm.get('model').value, this.searchCarForm.get('zipcode').value
     ).subscribe(
