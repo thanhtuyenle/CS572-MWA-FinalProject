@@ -1,7 +1,17 @@
-.cardInner {
+/* .cardInner {
     display: grid;
     grid-template-areas: "header header" "content content" "footer footer";
     grid-template-rows: auto auto auto;
     grid-row-gap: 16px;
     grid-column-gap: 16px;
+  } */
+  :host {
+    display: block;
+    padding: 32px;
+    border: 1px solid black;
+    border-radius: 8px;
+  }
+  .img-card {
+    width: 240px;
+    height: auto;
   }
