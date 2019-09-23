@@ -97,7 +97,7 @@
               </a>
             </li>
             <li>
-              <a routerLink="/cars" routerLinkActive="active">
+              <a routerLink="/cars/protected" routerLinkActive="active" *ngIf="auth.isAdmin">
                   <mat-icon class="icon">directions_car</mat-icon>
                   <span class="label">Cars</span>
               </a>

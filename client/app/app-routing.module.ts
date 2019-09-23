@@ -10,6 +10,7 @@ import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { HomeComponent } from './home/home.component';
 
 import { UsercarsComponent } from './usercars/usercars.component';
+import { AdminGuard } from './services/adminGuard.service';
 
 const routes: Routes = [
  
@@ -17,7 +18,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'cars', component: CarsComponent },
+  { path: 'cars/protected', component: CarsComponent, canActivate: [AdminGuard] },
   { path: 'usercars', component: UsercarsComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
 ];

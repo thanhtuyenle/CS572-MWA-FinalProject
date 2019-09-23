@@ -27,6 +27,9 @@ export class CarsComponent implements OnInit {
   allConditions: Condition[] = []
   allDealers: Dealer[] = []
 
+  //for upload image
+  fileToUpload: File = null;
+
   addCarForm: FormGroup;
   editCarForm: FormGroup;
 
@@ -58,8 +61,8 @@ export class CarsComponent implements OnInit {
       year: this.year,
       price: this.price,
       mileage: this.mileage,
-      imagePath: this.imagePath,
-      zipCode: this.zipCode
+      imagePath: [''],
+      zipCode: this.zipCode      
     });
     // this.editCarForm = this.formBuilder.group({
     //   make: this.make,
@@ -75,35 +78,23 @@ export class CarsComponent implements OnInit {
     // });
   }
 
-  getAllModels(){
-    this.carService.getMakes().subscribe(
-      data => this.allMakes = data,
-      error => console.log(error),
-      // () => this.isLoading = false
-    );
-    this.carService.getModels().subscribe(
-      data => this.allModels = data,
-      error => console.log(error),
-      // () => this.isLoading = false
-    );
-    this.carService.getStyles().subscribe(
-      data => this.allStyles = data,
-      error => console.log(error),
-      // () => this.isLoading = false
-    );
-    this.carService.getConditions().subscribe(
-      data => this.allConditions = data,
-      error => console.log(error),
-      // () => this.isLoading = false
-    );
+  //upload image
 
-    this.carService.getDealers().subscribe(
-      data => this.allDealers = data,
-      error => console.log(error),
-      // () => this.isLoading = false
-    );
-
+  onFileChange(files: FileList) {
+    this.fileToUpload = files.item(0);
+    //
   }
+
+  upload() {
+    let formData = new FormData();    
+    formData.append("uploads", this.fileToUpload, this.fileToUpload.name);
+   
+    this.carService.uploadFile(formData).subscribe(
+      res => console.log("uploadFile res: " + JSON.stringify(res))
+    )
+}
+
+  
 
   getCars() {
     this.carService.getCars().subscribe(
@@ -113,7 +104,11 @@ export class CarsComponent implements OnInit {
     );
   }
 
-  addCar() {
+
+
+  addCar() {  
+    this.upload();
+
     this.carService.addCar(this.addCarForm.value).subscribe(
       res => {
         console.log("addCar res: " + JSON.stringify(res))
@@ -160,6 +155,37 @@ export class CarsComponent implements OnInit {
         error => console.log(error)
       );
     }
+  }
+
+
+  getAllModels(){
+    this.carService.getMakes().subscribe(
+      data => this.allMakes = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+    this.carService.getModels().subscribe(
+      data => this.allModels = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+    this.carService.getStyles().subscribe(
+      data => this.allStyles = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+    this.carService.getConditions().subscribe(
+      data => this.allConditions = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+
+    this.carService.getDealers().subscribe(
+      data => this.allDealers = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+
   }
 
 }

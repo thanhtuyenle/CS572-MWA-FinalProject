@@ -27,6 +27,11 @@ export class CarService {
     return this.http.post<Car>('/api/car', car);
   }
 
+  uploadFile(formData: FormData): Observable<any> {
+    console.log("uploadFile: ")
+  return this.http.post('/api/upload', formData);
+}
+
   searchCars(makeId, modelId, zipcode): Observable<Car[]> {
     return this.http.get<Car[]>(`/api/cars/${makeId}/${modelId}/${zipcode}`);
   }

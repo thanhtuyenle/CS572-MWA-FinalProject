@@ -40,6 +40,7 @@ import { UsercarsComponent } from './usercars/usercars.component';
 
 import { HomeComponent } from './home/home.component';
 import { CardComponent } from './card/card.component';
+import { AdminGuard } from './services/adminGuard.service';
 
 
 export function tokenGetter() {
@@ -103,7 +104,7 @@ export function tokenGetter() {
     MatGridListModule,
     MatListModule],
   // providers: [UserService,AuthService],
-  providers: [UserService,AuthService,AuthGuardLogin, CarService],
+  providers: [UserService,AuthService,AuthGuardLogin, CarService, AdminGuard],
 
   bootstrap: [AppComponent]
 })
