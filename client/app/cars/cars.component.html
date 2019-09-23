@@ -121,7 +121,8 @@
         <input class="form-control mr-2" type="number" name="mileage"
              formControlName="mileage" placeholder="Mileage" min="0">
         <input class="form-control mr-2" type="text" name="imagePath"
-             formControlName="imagePath" placeholder="Image Path">
+             formControlName="imagePath" placeholder="Image Path">       
+        <!-- <input type="file" name="imagePath" (change)="onFileChange($event.target.file)" /> -->
       <input class="form-control mr-2" type="text" name="zipCode"
              formControlName="zipCode" placeholder="Zip code">
       <button class="btn btn-primary" type="submit" [disabled]="!addCarForm.valid">

@@ -43,9 +43,10 @@ export class CarsComponent implements OnInit {
               private formBuilder: FormBuilder
               /*public toast: ToastComponent*/) { }
 
-  ngOnInit() {
-    this.getAllModels();
+  ngOnInit() {    
     this.getCars();
+    this.getAllModels();
+
     this.addCarForm = this.formBuilder.group({
       make: this.make,
       model: this.model,
