@@ -3,6 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 import { Car } from '../shared/models/car.model';
+import { Make } from '../shared/models/make.model';
+import { Model } from '../shared/models/model.model';
+import { Style } from '../shared/models/style.model';
+import { Condition } from '../shared/models/condition.model';
 
 @Injectable()
 export class CarService {
@@ -18,6 +22,7 @@ export class CarService {
   }
 
   addCar(car: Car): Observable<Car> {
+      console.log("Add car: " + JSON.stringify(car))
     return this.http.post<Car>('/api/car', car);
   }
 
@@ -31,6 +36,22 @@ export class CarService {
 
   deleteCar(car: Car): Observable<any> {
     return this.http.delete(`/api/car/${car._id}`, { responseType: 'text' });
+  }
+
+  getMakes(): Observable<Make[]> {
+    return this.http.get<Make[]>('/api/makes');
+  }
+
+  getModels(): Observable<Model[]> {
+    return this.http.get<Model[]>('/api/models');
+  }
+
+  getStyles(): Observable<Style[]> {
+    return this.http.get<Style[]>('/api/styles');
+  }
+
+  getConditions(): Observable<Condition[]> {
+    return this.http.get<Condition[]>('/api/conditions');
   }
 
 }

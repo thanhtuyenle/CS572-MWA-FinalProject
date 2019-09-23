@@ -2,13 +2,28 @@ import * as express from 'express';
 
 import UserCtrl from './controllers/user';
 import CarCtrl from './controllers/car';
+import MakeCtrl from './controllers/make';
+import ModelCtrl from './controllers/model';
+import StyleCtrl from './controllers/style';
+import ConditionCtrl from './controllers/condition';
 
 export default function setRoutes(app) {
 
   const router = express.Router();
 
+  const makeCtrl = new MakeCtrl();
+  const modelCtrl = new ModelCtrl();
+  const styleCtrl = new StyleCtrl();
+  const conditionCtrl = new ConditionCtrl();
+
   const carCtrl = new CarCtrl();
   const userCtrl = new UserCtrl();
+
+  //relavant models
+  router.route('/makes').get(makeCtrl.getAll);
+  router.route('/models').get(modelCtrl.getAll);
+  router.route('/styles').get(styleCtrl.getAll);
+  router.route('/conditions').get(conditionCtrl.getAll);
 
   // Cars
   router.route('/cars').get(carCtrl.getAll);
