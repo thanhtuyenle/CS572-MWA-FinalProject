@@ -12,7 +12,7 @@ export default class CarCtrl extends BaseCtrl {
       if(req.params.modelId != 'ALL') {
         conditions.push({"model._id": req.params.modelId})
       }
-      if(req.params.zipcode != '') {
+      if(req.params.zipcode) {
         conditions.push({"zipCode": req.params.zipcode})
       }
       const obj = await this.model.find({$and:conditions});

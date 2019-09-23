@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   constructor(private carService: CarService, private formBuilder: FormBuilder)  { }
 
   zipcode = new FormControl('', [
-    Validators.required,
+    // Validators.required,
     Validators.pattern('[0-9]{5}')
   ]);
   ngOnInit() {

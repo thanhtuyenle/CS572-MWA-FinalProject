@@ -14,7 +14,7 @@
   gdGap="16px"
   gdRows="auto auto auto">
   <div gdArea="header">
-    Price: {{car.price}}
+    Price: {{car.price | currency}}
     <!-- <li>Make: {{car.Make}}</li>
     <li>Model: {{car.Model}}</li>
     <li>Style: {{car.Style}}</li>
@@ -37,7 +37,7 @@
         <li>Condition: {{car.condition}}</li>
         <li>Year: {{car.year}}</li>
         <li>Mileage: {{car.mileage}}</li>
-        <li>Price: {{car.price}}</li>
+        <li>Price: {{car.price | currency}}</li>
         <li>Zipcode: {{car.zipCode}}</li>
     </ul>
   </div>
