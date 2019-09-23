@@ -1,5 +1,18 @@
+<div>
+        <br>
+          <!-- <div class="container">
+              <div class="container">
+                <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
+                    <div class="blocks">
+                        <button button="submit" mat-raised-button color="primary">
+                            <mat-icon>add</mat-icon> Add Post
+                        </button>
+                    </div>
+              </div>
+          </div>
+        <br> -->
 
-  <div class="container">
+        <div class="container">
         <div fxLayout="row" fxLayoutAlign="center center" class="content">
           <mat-card class="card" >
             <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
@@ -33,16 +46,55 @@
                       </div>
                     <div class="col-sm-4">
                         <input matInput class="form-control" name="zipcode" placeholder="Zipcode" formControlName="zipcode" >
+                        <button mat-raised-button class="btn btn-primary" type="submit" [disabled]="!searchCarForm.valid">
+                          <mat-icon>search</mat-icon> Search
+                        </button>
                     </div>
-                    <div class="col-sm-12">
-                      <button mat-raised-button class="btn btn-primary" type="submit" [disabled]="!searchCarForm.valid">
-                        <i class="fa fa-sign-in"></i> Search
-                      </button>
-                    </div>
-                    </div>
-                    </form>    
+                </div>
+                </form>    
               </div>
             </mat-card-content>
           </mat-card>
+
         </div>
       </div>
+
+      <br>
+      
+      <div class="container">
+            <div fxLayout="row" fxLayoutAlign="center center" class="content">
+              <mat-card class="card" >
+                <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+                  <h3>Results</h3>
+                </mat-card-title>
+                <mat-card-content>
+                  <div class="example-container mat-elevation-z8">
+                        <!-- <div 
+                            fxLayout="row wrap" fxLayoutGap="32px" fxLayoutAlign="flex-start">
+                            <ng-container *ngFor="let _ of [1,2,3,4,5,6]">
+                                <app-card fxFlex="0 1 calc(33.3% - 32px)"></app-card>
+                            </ng-container>
+                        </div> -->
+                        <div 
+                            gdAreas="header header | side content | footer footer"
+                            gdGap="16px"
+                            gdRows="auto auto auto"
+                            gdAreas.lt-md="header | side | content | footer"
+                            gdRows.lt-md="auto auto auto auto"
+                            >
+                            <ng-container *ngFor="let _ of [1,2,3,4,5,6]">
+                                <app-card 
+                                            fxFlex="0 1 calc(33.3% - 32px)"
+                                            fxFlex.lt-md="0 1 calc(50% - 32px)"
+                                            fxFlex.lt-sm="100%"
+                                ></app-card>
+                            </ng-container>
+                        </div>
+                  </div>
+                </mat-card-content>
+              </mat-card>
+    
+            </div>
+        </div>
+
+    </div>
