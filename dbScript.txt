@@ -1,0 +1,15 @@
+db.makes.insert({_id:"1", name:"make1"})
+db.makes.insert({_id:"2", name:"make2"})
+db.makes.insert({_id:"3", name:"make3"})
+
+db.models.insert({_id:"1", name:"model1"})
+db.models.insert({_id:"2", name:"model2"})
+db.models.insert({_id:"3", name:"model3"})
+
+db.styles.insert({_id:"1", name:"style1"})
+db.styles.insert({_id:"2", name:"style2"})
+db.styles.insert({_id:"3", name:"style3"})
+
+db.conditions.insert({_id:"1", name:"condition1"})
+db.conditions.insert({_id:"2", name:"condition2"})
+db.conditions.insert({_id:"3", name:"condition3"})
