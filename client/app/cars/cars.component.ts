@@ -28,6 +28,8 @@ export class CarsComponent implements OnInit {
   allDealers: Dealer[] = []
 
   addCarForm: FormGroup;
+  editCarForm: FormGroup;
+
   make = new FormControl('', Validators.required);
   model = new FormControl('', Validators.required);
   style = new FormControl('', Validators.required);
@@ -48,6 +50,18 @@ export class CarsComponent implements OnInit {
     this.getAllModels();
 
     this.addCarForm = this.formBuilder.group({
+      make: this.make,
+      model: this.model,
+      style: this.style,
+      condition: this.condition,
+      dealer: this.dealer,
+      year: this.year,
+      price: this.price,
+      mileage: this.mileage,
+      imagePath: this.imagePath,
+      zipCode: this.zipCode
+    });
+    this.editCarForm = this.formBuilder.group({
       make: this.make,
       model: this.model,
       style: this.style,

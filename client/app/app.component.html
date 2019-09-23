@@ -61,7 +61,7 @@
       <span class="label">Dashboard</span>
     </a>
     <a mat-list-item routerLink="/cars" routerLinkActive="active">
-      <mat-icon class="icon">cars</mat-icon>
+      <mat-icon class="icon">directions_car</mat-icon>
       <span class="label">Cars</span>
     </a>
     <a mat-list-item routerLink="/usercars" routerLinkActive="active" >
@@ -93,12 +93,12 @@
             <li>
               <a  routerLink="/">
                   <mat-icon class="icon">home</mat-icon>
-                  <span class="label">Home</span>
+                  <span class="label"></span>
               </a>
             </li>
             <li>
               <a routerLink="/cars" routerLinkActive="active">
-                  <mat-icon class="icon">Cars</mat-icon>
+                  <mat-icon class="icon">directions_car</mat-icon>
                   <span class="label">Cars</span>
               </a>
             </li>
@@ -113,12 +113,6 @@
                 <mat-icon class="icon">account_circle</mat-icon> {{auth.currentUser.username}}
               </a>
             </li>
-            <li>
-              <a routerLink="/login" routerLinkActive="active" *ngIf="!auth.loggedIn">
-                <mat-icon class="icon">input</mat-icon>
-                <span  class="label">Login</span>
-               </a>
-          </li>
             <li>
                 <a routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
                   <mat-icon class="icon">input</mat-icon>

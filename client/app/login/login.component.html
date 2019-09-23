@@ -39,6 +39,11 @@
             <div class="example-container mat-elevation-z8">
                 <form class="example-form" [formGroup]="loginForm" (ngSubmit)="login()">
                   <div class="row">
+                      <mat-error  *ngIf="loginForm.get('email').errors?.serverError">
+                          {{loginForm.get('email').errors?.serverError}}
+                      </mat-error>
+                  </div>
+                  <div class="row">
                       <mat-form-field>
                           <input matInput class="form-control" type="email" name="email"
                           formControlName="email" placeholder="Email" autofocus>

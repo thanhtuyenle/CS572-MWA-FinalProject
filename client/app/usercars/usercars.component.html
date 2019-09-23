@@ -10,9 +10,9 @@
       <thead class="thead-light">
         <tr *ngIf="!isViewDetails">
           <!-- <th scope="col">Make</th> -->
-          <th scope="col">Year</th>
-          <th scope="col">Price</th>
-          <th scope="col">Zip code</th>
+          <th scope="col">Make</th>
+          <th scope="col">Model</th>
+          <th scope="col">Style</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -24,9 +24,9 @@
       <tbody *ngIf="!isEditing">
         <tr *ngFor="let car of cars">
           <!-- <td>{{car.make}}</td> -->
-          <td>{{car.year}}</td>
-          <td>{{car.price}}</td>
-          <td>{{car.zipCode}}</td>
+          <td>Make: {{car.make?.name}}</td>
+          <td>Model: {{car.model?.name}}</td>
+          <td>Style: {{car.style?.name}}</td>
           <td>
             <button class="btn btn-sm btn-primary" (click)="enableViewDetails(car)">
               <i class="fa fa-pencil"></i> View Details
@@ -43,13 +43,13 @@
         </tr>
         <tr>
           <ul>
-            <li>Make: {{car.Make}}</li>
-            <li>Model: {{car.Model}}</li>
-            <li>Style: {{car.Style}}</li>
-            <li>Condition: {{car.condition}}</li>
+            <li>Make: {{car.make?.name}}</li>
+            <li>Model: {{car.model?.name}}</li>
+            <li>Style: {{car.style?.name}}</li>
+            <li>Condition: {{car.condition?.name}}</li>
             <li>Year: {{car.year}}</li>
-            <li>Mileage: {{car.Mileage}}</li>
-            <li>Price: {{car.price}}</li>
+            <li>Mileage: {{car.mileage}}</li>
+            <li>Price: {{car.price}} $</li>
             <li>Zipcode: {{car.zipCode}}</li>
           </ul>
         </tr>

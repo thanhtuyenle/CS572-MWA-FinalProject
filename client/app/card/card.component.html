@@ -1,0 +1,49 @@
+<!-- <div class="cardInner">
+    <div [style.grid-area]="'header'">
+        Header
+    </div>
+    <div [style.grid-area]="'content'">
+        Content
+    </div>
+    <div [style.grid-area]="'footer'">
+        Footer
+    </div>
+</div> -->
+<div 
+  gdAreas="header header | content content | footer footer"
+  gdGap="16px"
+  gdRows="auto auto auto">
+  <div gdArea="header">
+    Price: {{car.price | currency}}
+    <!-- <li>Make: {{car.Make}}</li>
+    <li>Model: {{car.Model}}</li>
+    <li>Style: {{car.Style}}</li>
+    <li>Condition: {{car.condition}}</li>
+    <li>Year: {{car.year}}</li>
+    <li>Mileage: {{car.Mileage}}</li>
+    <li>Price: {{car.price}}</li>
+    <li>Zipcode: {{car.zipCode}}</li> -->
+   </div>
+   <!-- <div gdArea="side">
+        <img src="../../assets/cars/sedan_lexus.jpg" class="img-card"/>
+   </div> -->
+  <div gdArea="content">
+    <img src="../../assets/cars/sedan_lexus.jpg" class="img-card"/>
+    Car details:
+    <ul>
+        <li>Make: {{car.make?.name}}</li>
+        <li>Model: {{car.model?.name}}</li>
+        <li>Style: {{car.style?.name}}</li>
+        <li>Condition: {{car.condition}}</li>
+        <li>Year: {{car.year}}</li>
+        <li>Mileage: {{car.mileage}}</li>
+        <li>Price: {{car.price | currency}}</li>
+        <li>Zipcode: {{car.zipCode}}</li>
+    </ul>
+  </div>
+  <div gdArea="footer">
+    <button class="btn btn-sm btn-primary mr-2" type="submit" >
+        <mat-icon>favorite</mat-icon> Save Car
+    </button>
+  </div>
+</div>

@@ -37,18 +37,27 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  setClassEmail() {
-    return { 'has-danger': !this.email.pristine && !this.email.valid };
-  }
+  // setClassEmail() {
+  //   return { 'has-danger': !this.email.pristine && !this.email.valid };
+  // }
 
-  setClassPassword() {
-    return { 'has-danger': !this.password.pristine && !this.password.valid };
-  }
+  // setClassPassword() {
+  //   return { 'has-danger': !this.password.pristine && !this.password.valid };
+  // }
 
   login() {
     this.auth.login(this.loginForm.value).subscribe(
       res => this.router.navigate(['/']),
-      error => console.log('invalid email or password!')//this.toast.setMessage('invalid email or password!', 'danger')
+      error => {
+        console.log('invalid email or password!')
+        const formControl = this.loginForm.get('email');
+        if (formControl) {
+          // activate the error message
+          formControl.setErrors({
+            serverError: 'Invalid email or password!'
+          });
+        }
+      }//this.toast.setMessage('invalid email or password!', 'danger')
     )
   }
 
