@@ -63,9 +63,13 @@
       <mat-icon class="icon">user</mat-icon>
       <span class="label">Dashboard</span>
     </a>
-    <a mat-list-item>
+    <a mat-list-item routerLink="/cars" routerLinkActive="active">
       <mat-icon class="icon">directions_car</mat-icon>
       <span class="label">Cars</span>
+    </a>
+    <a mat-list-item routerLink="/usercars" routerLinkActive="active" >
+      <mat-icon class="icon"></mat-icon>
+      <span class="label">User Cars</span>
     </a>
     <a  mat-list-item type="button" routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
       <mat-icon class="icon">input</mat-icon>
@@ -101,13 +105,26 @@
               </a>
             </li>
             <li>
-                <a mat-list-item  routerLink="/account" routerLinkActive="active" *ngIf="auth.loggedIn">
-                  <mat-icon class="icon">account_circle</mat-icon> {{auth.currentUser.username}}
-                    <!-- <span class="label">Home</span><a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
-                      <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
-                    </a> -->
-                </a>
-              </li>
+              <a routerLink="/cars" routerLinkActive="active">
+                  <mat-icon class="icon">Cars</mat-icon>
+                  <span class="label">Cars</span>
+              </a>
+            </li>
+
+            <li>
+              <a routerLink="/usercars" routerLinkActive="active">
+                  <mat-icon class="icon"></mat-icon>
+                  <span class="label">User Cars</span>
+              </a>
+            </li>
+            <li>
+              <a mat-list-item  routerLink="/account" routerLinkActive="active" *ngIf="auth.loggedIn">
+                <mat-icon class="icon">account_circle</mat-icon> {{auth.currentUser.username}}
+                  <!-- <span class="label">Home</span><a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+                    <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
+                  </a> -->
+              </a>
+            </li>
             <li>
               <a routerLink="/cars" routerLinkActive="active" *ngIf="auth.loggedIn">
                   <mat-icon class="icon">directions_car</mat-icon>

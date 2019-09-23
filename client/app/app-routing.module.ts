@@ -9,6 +9,8 @@ import { AccountComponent } from './account/account.component';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { HomeComponent } from './home/home.component';
 
+import { UsercarsComponent } from './usercars/usercars.component';
+
 const routes: Routes = [
  
   { path: '', component: HomeComponent },
@@ -16,6 +18,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'cars', component: CarsComponent },
+  { path: 'usercars', component: UsercarsComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
 ];
 

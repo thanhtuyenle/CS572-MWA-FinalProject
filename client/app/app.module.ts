@@ -36,6 +36,8 @@ import { RegisterComponent } from './register/register.component';
 import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
 import { CarService } from './services/car.service';
+import { UsercarsComponent } from './usercars/usercars.component';
+
 import { HomeComponent } from './home/home.component';
 import { CardComponent } from './card/card.component';
 
@@ -54,8 +56,9 @@ export function tokenGetter() {
     RegisterComponent,
     CarsComponent,
     AccountComponent,
-    HomeComponent,
-    CardComponent
+    CardComponent,
+    UsercarsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
