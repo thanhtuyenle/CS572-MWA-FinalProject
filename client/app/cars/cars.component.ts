@@ -61,18 +61,18 @@ export class CarsComponent implements OnInit {
       imagePath: this.imagePath,
       zipCode: this.zipCode
     });
-    this.editCarForm = this.formBuilder.group({
-      make: this.make,
-      model: this.model,
-      style: this.style,
-      condition: this.condition,
-      dealer: this.dealer,
-      year: this.year,
-      price: this.price,
-      mileage: this.mileage,
-      imagePath: this.imagePath,
-      zipCode: this.zipCode
-    });
+    // this.editCarForm = this.formBuilder.group({
+    //   make: this.make,
+    //   model: this.model,
+    //   style: this.style,
+    //   condition: this.condition,
+    //   dealer: this.dealer,
+    //   year: this.year,
+    //   price: this.price,
+    //   mileage: this.mileage,
+    //   imagePath: this.imagePath,
+    //   zipCode: this.zipCode
+    // });
   }
 
   getAllModels(){
