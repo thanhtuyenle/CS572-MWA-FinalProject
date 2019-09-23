@@ -110,7 +110,6 @@
                   <span class="label">Cars</span>
               </a>
             </li>
-
             <li>
               <a routerLink="/usercars" routerLinkActive="active">
                   <mat-icon class="icon"></mat-icon>
@@ -125,12 +124,7 @@
                   </a> -->
               </a>
             </li>
-            <li>
-              <a routerLink="/cars" routerLinkActive="active" *ngIf="auth.loggedIn">
-                  <mat-icon class="icon">cars</mat-icon>
-                  <span class="label">Cars</span>
-              </a>
-            </li>
+            
             <li>
                 <a routerLink="/logout" routerLinkActive="active" *ngIf="auth.loggedIn">
                   <mat-icon class="icon">input</mat-icon>
