@@ -8,6 +8,7 @@ import { Model } from '../shared/models/model.model';
 import { Style } from '../shared/models/style.model';
 import { Condition } from '../shared/models/condition.model';
 import { Dealer } from '../shared/models/dealer.model';
+import { User } from '../shared/models/user.model';
 
 @Injectable()
 export class CarService {
@@ -41,6 +42,19 @@ export class CarService {
 
   editCar(car: Car): Observable<any> {
     return this.http.put(`/api/car/${car._id}`, car, { responseType: 'text' });
+  }
+  saveFavoriteCar(car: Car, user: User): Observable<any> {
+    // console.dir(car)
+    // console.dir(user)
+    return this.http.patch(`/api/car/${car._id}`, user, { responseType: 'text' });
+  }
+  unsaveFavoriteCar(car: Car, user: User): Observable<any> {
+    // console.dir(car)
+    // console.dir(user)
+    return this.http.patch(`/api/car/${car._id}/${user._id}`,{}, { responseType: 'text' });
+  }
+  getFavoriteCars(userID): Observable<Car[]> {
+    return this.http.get<Car[]>(`/api/cars/${userID}`);
   }
 
   deleteCar(car: Car): Observable<any> {

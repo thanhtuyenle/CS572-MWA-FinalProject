@@ -38,12 +38,17 @@
         <li>Year: {{car.year}}</li>
         <li>Mileage: {{car.mileage}}</li>
         <li>Price: {{car.price | currency}}</li>
+        <li>Dealer: {{car.dealer?.name}} </li>
+        <li>Dealer contact: {{car.dealer?.phone}} {{car.dealer?.website}}  </li>
         <li>Zipcode: {{car.zipCode}}</li>
     </ul>
   </div>
-  <div gdArea="footer">
-    <button class="btn btn-sm btn-primary mr-2" type="submit" >
+  <div gdArea="footer" *ngIf="isLoggedIn">
+    <button class="btn btn-sm btn-primary mr-2" (click)="saveCar()" *ngIf="!isFavorite">
         <mat-icon>favorite</mat-icon> Save Car
+    </button>
+    <button class="btn btn-sm btn-primary mr-2" (click)="unsaveCar()" *ngIf="isFavorite">
+        <mat-icon>remove_circle_outline</mat-icon> Unsave Car
     </button>
   </div>
 </div>

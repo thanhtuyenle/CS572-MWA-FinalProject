@@ -47,6 +47,11 @@ export default function setRoutes(app) {
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
 
+  // save favorite car
+  router.route('/car/:cid').patch(carCtrl.saveFollower);
+  router.route('/car/:cid/:uid').patch(carCtrl.unsaveFollower);
+  router.route('/cars/:uid').get(carCtrl.getCarsByFollower);
+
   // Apply the routes to our applicarion with the prefix /api
   app.use('/api', router);
 

@@ -25,6 +25,8 @@ export class UsercarsComponent implements OnInit {
   price = new FormControl('', Validators.required);
   zipCode = new FormControl('', Validators.required);
 
+  displayedColumns = ["image","make", "model", "style","condition","year","price","view"];
+  //dataSource: Car[] = [];
   constructor(private carService: CarService,
               private formBuilder: FormBuilder,public auth: AuthService
               /*public toast: ToastComponent*/) { }
@@ -41,7 +43,9 @@ export class UsercarsComponent implements OnInit {
 
   getCars() {
     this.carService.getCars().subscribe(
-      data => this.cars = data,
+      data => {this.cars = data;
+                  //this.dataSource = this.cars;
+                  },
       error => console.log(error),
       () => this.isLoading = false
     );
@@ -59,6 +63,8 @@ export class UsercarsComponent implements OnInit {
   }
 
   enableViewDetails(car: Car) {
+    console.log("enable view details")
+    console.log(this.car);
     this.isEditing = true;
     this.car = car;
     this.isViewDetails = true;
