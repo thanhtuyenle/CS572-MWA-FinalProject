@@ -38,7 +38,9 @@
         </tr>  
       </tbody>
       <tbody *ngIf="isEditing">
-        <tr>Image: Image should display here</tr>
+        <tr>
+          <img src="{{car.imagePath}}" alt="car image"/>
+        </tr>
         <tr>
           <ul>
             <li>Make: {{car.Make}}</li>
