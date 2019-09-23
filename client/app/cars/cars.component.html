@@ -10,8 +10,13 @@
         <tr>
           <th scope="col">Make</th>
           <th scope="col">Model</th>
+          <th scope="col">Style</th>
+          <th scope="col">Condition</th>
+          <th scope="col">Dealer</th>
           <th scope="col">Year</th>
           <th scope="col">Price</th>
+          <th scope="col">Mileage</th>
+          <th scope="col">Image Path</th>
           <th scope="col">Zip code</th>
           <th scope="col">Actions</th>
         </tr>
@@ -25,8 +30,13 @@
         <tr *ngFor="let car of cars">
           <td>{{car.make?.name}}</td>
           <td>{{car.model?.name}}</td>
+          <td>{{car.style?.name}}</td>
+          <td>{{car.condition?.name}}</td>
+          <td>{{car.dealer?.name}}</td>
           <td>{{car.year}}</td>
           <td>{{car.price}}</td>
+          <td>{{car.mileage}}</td>
+          <td>{{car.imagePath}}</td>
           <td>{{car.zipCode}}</td>
           <td>
             <button class="btn btn-sm btn-primary" (click)="enableEditing(car)">
@@ -48,6 +58,8 @@
                      [(ngModel)]="car.year" placeholder="Year" min="0" required>
               <input class="form-control mr-2" type="number" name="price"
                      [(ngModel)]="car.price" placeholder="Price" min="0" required>
+                <input class="form-control mr-2" type="number" name="mileage"
+                    [(ngModel)]="car.mileage" placeholder="Mileage" min="0" required>
                 <input class="form-control mr-2" type="text" name="zipCode"
                      [(ngModel)]="car.zipCode" placeholder="Zip code" required>
               <button class="btn btn-sm btn-primary mr-2" type="submit" [disabled]="!form.form.valid">
@@ -67,9 +79,7 @@
 <div class="card" *ngIf="!isEditing">
   <h4 class="card-header">Add new car</h4>
   <div class="card-body">
-    <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addCar()">
-      <!-- <input class="form-control mr-2" type="text" name="name"
-             formControlName="make" placeholder="Make"> -->
+    <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addCar()">      
         <select class="form-control mr-2" name="makes" formControlName="make">
             <option [ngValue]="null" disabled selected>Select a make</option>
             <option *ngFor="let mk of allMakes" [ngValue]="mk">
@@ -83,10 +93,35 @@
                 {{ mod.name }}
             </option>
         </select>
+
+        <select class="form-control mr-2" name="styles" formControlName="style">
+            <option [ngValue]="null" disabled selected>Select a style</option>
+            <option *ngFor="let sty of allStyles" [ngValue]="sty">
+                {{ sty.name }}
+            </option>
+        </select>
+
+        <select class="form-control mr-2" name="conditions" formControlName="condition">
+            <option [ngValue]="null" disabled selected>Select a condition</option>
+            <option *ngFor="let con of allConditions" [ngValue]="con">
+                {{ con.name }}
+            </option>
+        </select>
+
+        <select class="form-control mr-2" name="dealers" formControlName="dealer">
+            <option [ngValue]="null" disabled selected>Select a dealer</option>
+            <option *ngFor="let deal of allDealers" [ngValue]="deal">
+                {{ deal.name }}
+            </option>
+        </select>
       <input class="form-control mr-2" type="number" name="year"
              formControlName="year" placeholder="Year" min="0">
       <input class="form-control mr-2" type="number" name="price"
              formControlName="price" placeholder="Price" min="0">
+        <input class="form-control mr-2" type="number" name="mileage"
+             formControlName="mileage" placeholder="Mileage" min="0">
+        <input class="form-control mr-2" type="text" name="imagePath"
+             formControlName="imagePath" placeholder="Image Path">
       <input class="form-control mr-2" type="text" name="zipCode"
              formControlName="zipCode" placeholder="Zip code">
       <button class="btn btn-primary" type="submit" [disabled]="!addCarForm.valid">

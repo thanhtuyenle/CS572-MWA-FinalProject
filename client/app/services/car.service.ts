@@ -7,6 +7,7 @@ import { Make } from '../shared/models/make.model';
 import { Model } from '../shared/models/model.model';
 import { Style } from '../shared/models/style.model';
 import { Condition } from '../shared/models/condition.model';
+import { Dealer } from '../shared/models/dealer.model';
 
 @Injectable()
 export class CarService {
@@ -52,6 +53,10 @@ export class CarService {
 
   getConditions(): Observable<Condition[]> {
     return this.http.get<Condition[]>('/api/conditions');
+  }
+
+  getDealers(): Observable<Dealer[]> {
+    return this.http.get<Dealer[]>('/api/dealers');
   }
 
 }
