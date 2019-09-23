@@ -10,6 +10,7 @@ import { AuthGuardLogin } from './services/auth-guard-login.service';
 import { HomeComponent } from './home/home.component';
 
 import { UsercarsComponent } from './usercars/usercars.component';
+import { FavoritecarsComponent } from './favoritecars/favoritecars.component';
 
 const routes: Routes = [
  
@@ -18,6 +19,7 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
   { path: 'cars', component: CarsComponent },
+  { path: 'favorite', component: FavoritecarsComponent },
   { path: 'usercars', component: UsercarsComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
 ];

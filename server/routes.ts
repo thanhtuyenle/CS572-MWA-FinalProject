@@ -34,6 +34,7 @@ export default function setRoutes(app) {
   router.route('/car').post(carCtrl.insert);
   router.route('/car/:id').get(carCtrl.get);
   router.route('/cars/:makeId/:modelId/:zipcode').get(carCtrl.search);
+  router.route('/cars/:makeId/:modelId/').get(carCtrl.search);
   router.route('/car/:id').put(carCtrl.update);
   router.route('/car/:id').delete(carCtrl.delete);
 
@@ -45,6 +46,11 @@ export default function setRoutes(app) {
   router.route('/user/:id').get(userCtrl.get);
   router.route('/user/:id').put(userCtrl.update);
   router.route('/user/:id').delete(userCtrl.delete);
+
+  // save favorite car
+  router.route('/car/:cid').patch(carCtrl.saveFollower);
+  router.route('/car/:cid/:uid').patch(carCtrl.unsaveFollower);
+  router.route('/cars/:uid').get(carCtrl.getCarsByFollower);
 
   // Apply the routes to our applicarion with the prefix /api
   app.use('/api', router);
