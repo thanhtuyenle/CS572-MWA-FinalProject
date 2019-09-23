@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Car } from '../shared/models/car.model';
 import { CarService } from '../services/car.service';
+import { Make } from '../shared/models/make.model';
+import { Style } from '../shared/models/style.model';
+import { Model } from '../shared/models/model.model';
+import { Condition } from '../shared/models/condition.model';
 
 @Component({
   selector: 'app-cars',
@@ -15,8 +19,15 @@ export class CarsComponent implements OnInit {
   isLoading = true;
   isEditing = false;
 
+  //for comboboxes
+  allMakes: Make[] = []
+  allModels: Model[] = []
+  allStyles: Style[] = []
+  allConditions: Condition[] = []
+
   addCarForm: FormGroup;
-  // make = new FormControl('', Validators.required);
+  make = new FormControl('', Validators.required);
+  model = new FormControl('', Validators.required);
   year = new FormControl('', Validators.required);
   price = new FormControl('', Validators.required);
   zipCode = new FormControl('', Validators.required);
@@ -26,13 +37,39 @@ export class CarsComponent implements OnInit {
               /*public toast: ToastComponent*/) { }
 
   ngOnInit() {
+    this.getAllModels();
     this.getCars();
     this.addCarForm = this.formBuilder.group({
-      // make: this.make,
+      make: this.make,
+      model: this.model,
       year: this.year,
       price: this.price,
       zipCode: this.zipCode
     });
+  }
+
+  getAllModels(){
+    this.carService.getMakes().subscribe(
+      data => this.allMakes = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+    this.carService.getModels().subscribe(
+      data => this.allModels = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+    this.carService.getStyles().subscribe(
+      data => this.allStyles = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+    this.carService.getConditions().subscribe(
+      data => this.allConditions = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+
   }
 
   getCars() {
@@ -46,6 +83,7 @@ export class CarsComponent implements OnInit {
   addCar() {
     this.carService.addCar(this.addCarForm.value).subscribe(
       res => {
+        console.log("addCar res: " + JSON.stringify(res))
         this.cars.push(res);
         this.addCarForm.reset();
         // this.toast.setMessage('item added successfully.', 'success');
