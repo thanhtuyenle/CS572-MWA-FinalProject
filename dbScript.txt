@@ -13,3 +13,7 @@ db.styles.insert({_id:"3", name:"style3"})
 db.conditions.insert({_id:"1", name:"condition1"})
 db.conditions.insert({_id:"2", name:"condition2"})
 db.conditions.insert({_id:"3", name:"condition3"})
+
+db.dealers.insert({_id:"1", name:"dealer1",address:"1000 NCourt, Fairfield, IA", phone:'123456789', website:'dealer1.com'})
+db.dealers.insert({_id:"2", name:"dealer2",address:"2000 NCourt, Fairfield, IA", phone:'123456789', website:'dealer2.com'})
+db.dealers.insert({_id:"3", name:"dealer3",address:"3000 NCourt, Fairfield, IA", phone:'123456789', website:'dealer3.com'})

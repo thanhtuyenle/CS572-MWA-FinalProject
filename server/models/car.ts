@@ -5,8 +5,11 @@ const carSchema = new mongoose.Schema({
   model: {_id:String, name: String},
   style: {_id:String, name: String},
   condition: {_id:String, name: String},
+  dealer: {_id:String, name: String, address: String, phone: String, website: String},
   year: Number,
   price: Number,
+  mileage: Number,
+  imagePath: String,
   zipCode: String
 });
 

@@ -6,6 +6,7 @@ import { Make } from '../shared/models/make.model';
 import { Style } from '../shared/models/style.model';
 import { Model } from '../shared/models/model.model';
 import { Condition } from '../shared/models/condition.model';
+import { Dealer } from '../shared/models/dealer.model';
 
 @Component({
   selector: 'app-cars',
@@ -24,12 +25,18 @@ export class CarsComponent implements OnInit {
   allModels: Model[] = []
   allStyles: Style[] = []
   allConditions: Condition[] = []
+  allDealers: Dealer[] = []
 
   addCarForm: FormGroup;
   make = new FormControl('', Validators.required);
   model = new FormControl('', Validators.required);
+  style = new FormControl('', Validators.required);
+  condition = new FormControl('', Validators.required);
+  dealer = new FormControl('', Validators.required);
   year = new FormControl('', Validators.required);
   price = new FormControl('', Validators.required);
+  mileage = new FormControl('', Validators.required);
+  imagePath = new FormControl('', Validators.required);
   zipCode = new FormControl('', Validators.required);
 
   constructor(private carService: CarService,
@@ -42,8 +49,13 @@ export class CarsComponent implements OnInit {
     this.addCarForm = this.formBuilder.group({
       make: this.make,
       model: this.model,
+      style: this.style,
+      condition: this.condition,
+      dealer: this.dealer,
       year: this.year,
       price: this.price,
+      mileage: this.mileage,
+      imagePath: this.imagePath,
       zipCode: this.zipCode
     });
   }
@@ -66,6 +78,12 @@ export class CarsComponent implements OnInit {
     );
     this.carService.getConditions().subscribe(
       data => this.allConditions = data,
+      error => console.log(error),
+      // () => this.isLoading = false
+    );
+
+    this.carService.getDealers().subscribe(
+      data => this.allDealers = data,
       error => console.log(error),
       // () => this.isLoading = false
     );

@@ -6,6 +6,7 @@ import MakeCtrl from './controllers/make';
 import ModelCtrl from './controllers/model';
 import StyleCtrl from './controllers/style';
 import ConditionCtrl from './controllers/condition';
+import DealerCtrl from './controllers/dealer';
 
 export default function setRoutes(app) {
 
@@ -15,6 +16,7 @@ export default function setRoutes(app) {
   const modelCtrl = new ModelCtrl();
   const styleCtrl = new StyleCtrl();
   const conditionCtrl = new ConditionCtrl();
+  const dealerCtrl = new DealerCtrl();
 
   const carCtrl = new CarCtrl();
   const userCtrl = new UserCtrl();
@@ -24,6 +26,7 @@ export default function setRoutes(app) {
   router.route('/models').get(modelCtrl.getAll);
   router.route('/styles').get(styleCtrl.getAll);
   router.route('/conditions').get(conditionCtrl.getAll);
+  router.route('/dealers').get(dealerCtrl.getAll);
 
   // Cars
   router.route('/cars').get(carCtrl.getAll);
