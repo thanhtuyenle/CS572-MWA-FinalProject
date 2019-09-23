@@ -36,7 +36,7 @@ import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
 import { CarService } from './services/car.service';
 import { UsercarsComponent } from './usercars/usercars.component';
-import { CarDetailsComponent } from './car-details/car-details.component';
+
 
 
 export function tokenGetter() {
@@ -54,7 +54,6 @@ export function tokenGetter() {
     CarsComponent,
     AccountComponent,
     UsercarsComponent,
-    CarDetailsComponent
   ],
   imports: [
     BrowserModule,
