@@ -24,6 +24,7 @@ import {
   MatDialogModule,
   MatInputModule,
   MatSelectModule,
+  MatGridListModule,
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
@@ -37,6 +38,7 @@ import { AccountComponent } from './account/account.component';
 import { CarService } from './services/car.service';
 import { UsercarsComponent } from './usercars/usercars.component';
 
+import { HomeComponent } from './home/home.component';
 
 
 export function tokenGetter() {
@@ -54,6 +56,7 @@ export function tokenGetter() {
     CarsComponent,
     AccountComponent,
     UsercarsComponent,
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -73,6 +76,7 @@ export function tokenGetter() {
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
+    MatGridListModule,
 
     AppRoutingModule,
     SharedModule,
@@ -94,6 +98,7 @@ export function tokenGetter() {
     MatDialogModule,
     MatInputModule,
     MatSelectModule,
+    MatGridListModule,
     MatListModule],
   // providers: [UserService,AuthService],
   providers: [UserService,AuthService,AuthGuardLogin, CarService],

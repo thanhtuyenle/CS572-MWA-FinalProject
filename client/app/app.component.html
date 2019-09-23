@@ -53,12 +53,20 @@
       <mat-icon class="icon">input</mat-icon>
       <span class="label">Login</span>
     </a>
-    <a mat-list-item>
-      <mat-icon class="icon">home</mat-icon>
-        <span class="label">Home</span>
+    <a mat-list-item  routerLink="/account" routerLinkActive="active" *ngIf="auth.loggedIn">
+      <mat-icon class="icon">home</mat-icon>{{auth.currentUser.username}}
+        <!-- <span class="label">Home</span><a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+          <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
+        </a> -->
     </a>
     <a mat-list-item routerLink="/cars" routerLinkActive="active" >
       <mat-icon class="icon">input</mat-icon>
+    <a mat-list-item>
+      <mat-icon class="icon">user</mat-icon>
+      <span class="label">Dashboard</span>
+    </a>
+    <a mat-list-item>
+      <mat-icon class="icon">cars</mat-icon>
       <span class="label">Cars</span>
     </a>
     <a mat-list-item routerLink="/usercars" routerLinkActive="active" >
@@ -79,7 +87,8 @@
       </button>
     </div>
      <div>
-       <a>
+      <img src="../assets/icons8-car-24.png" alt="car icon" />
+       <a routerLink="/">
           Car Management System
        </a>
      </div>
@@ -92,7 +101,7 @@
                  </a>
             </li>
             <li>
-              <a >
+              <a  routerLink="/">
                   <mat-icon class="icon">home</mat-icon>
                   <span class="label">Home</span>
               </a>
@@ -108,6 +117,11 @@
                 <a routerLink="/usercars" routerLinkActive="active">
                     <mat-icon class="icon"></mat-icon>
                     <span class="label">User Cars</span>
+                <a mat-list-item  routerLink="/account" routerLinkActive="active" *ngIf="auth.loggedIn">
+                  <mat-icon class="icon">account_circle</mat-icon> {{auth.currentUser.username}}
+                    <!-- <span class="label">Home</span><a routerLink="/account" class="nav-link" routerLinkActive="active" *ngIf="auth.loggedIn">
+                      <i class="fa fa-user"></i> Account ({{auth.currentUser.username}})
+                    </a> -->
                 </a>
               </li>
             <li>
