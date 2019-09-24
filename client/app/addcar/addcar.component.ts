@@ -60,7 +60,7 @@ export class AddcarComponent implements OnInit {
         year: new FormControl(car.year, Validators.required),
         price: new FormControl(car.price, Validators.required),
         mileage: new FormControl(car.mileage, Validators.required),
-        // imagePath: new FormControl(''),
+        imagePath: new FormControl(car.imagePath, Validators.required),
         zipCode: new FormControl(car.zipCode, Validators.required),     
       });
     } else {
@@ -73,7 +73,7 @@ export class AddcarComponent implements OnInit {
         year: this.year,
         price: this.price,
         mileage: this.mileage,
-        // imagePath: new FormControl(''),
+        imagePath: [null, Validators.required],//new FormControl(null, Validators.required),
         zipCode: this.zipCode      
       });
     }
@@ -130,5 +130,23 @@ export class AddcarComponent implements OnInit {
       dealer: this.allDealers.filter(m => m._id == obj.dealer)[0]
     }
     return newCar;
+  }
+
+  
+  onFileChange(event) {
+    
+    this.fileToUpload = event.target.files[0];
+    console.log("onFileChange before reader: " + this.fileToUpload.name + " " + JSON.stringify(this.fileToUpload))
+    
+    let reader = new FileReader();
+    reader.onload = () => {
+      // this.imagePath = reader.result;
+      this.addCarForm.patchValue({
+        imagePath: reader.result
+     });
+    };
+    reader.readAsDataURL(this.fileToUpload);
+    console.log("onFileChange afer reader: " + this.fileToUpload.name + " " + JSON.stringify(this.fileToUpload))
+
   }
 }

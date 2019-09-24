@@ -50,6 +50,12 @@
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
     </mat-form-field>
+    <!-- <mat-form-field> -->
+        <div class="row">
+            <input  type="file" (change)="onFileChange($event)"/>
+        </div>
+        <!-- <input matInput placeholder="Image Path" formControlName="imagePath" type="file" (change)="onFileChange($event)"/> -->
+    <!-- </mat-form-field> -->
     <mat-form-field>
         <input matInput placeholder="Mileage" formControlName="mileage">
     </mat-form-field>

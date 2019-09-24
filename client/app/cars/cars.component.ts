@@ -57,18 +57,18 @@ export class CarsComponent implements OnInit {
     this.getCars();
     this.getAllModels();
 
-    this.addCarForm = this.formBuilder.group({
-      make: this.make,
-      model: this.model,
-      style: this.style,
-      condition: this.condition,
-      dealer: this.dealer,
-      year: this.year,
-      price: this.price,
-      mileage: this.mileage,
-      imagePath: [null, Validators.required],//this.buf,//[''],
-      zipCode: this.zipCode      
-    });
+    // this.addCarForm = this.formBuilder.group({
+    //   make: this.make,
+    //   model: this.model,
+    //   style: this.style,
+    //   condition: this.condition,
+    //   dealer: this.dealer,
+    //   year: this.year,
+    //   price: this.price,
+    //   mileage: this.mileage,
+    //   imagePath: [null, Validators.required],//this.buf,//[''],
+    //   zipCode: this.zipCode      
+    // });
     // this.editCarForm = this.formBuilder.group({
     //   make: this.make,
     //   model: this.model,
@@ -167,8 +167,16 @@ export class CarsComponent implements OnInit {
     if (window.confirm('Are you sure you want to permanently delete this item?')) {
       this.carService.deleteCar(car).subscribe(
         () => {
-          const pos = this.cars.map(elem => elem._id).indexOf(car._id);
-          this.cars.splice(pos, 1);
+          // const pos = this.cars.map(elem => elem._id).indexOf(car._id);
+          // this.cars.splice(pos, 1);
+          this.carService.getCars().subscribe(
+            data => {
+              this.cars = data;
+              console.dir(data)
+            },
+            error => console.dir(error),
+            () => {console.log('loaded all cars')}
+          );
           // this.toast.setMessage('item deleted successfully.', 'success');
         },
         error => console.log(error)
@@ -217,7 +225,14 @@ export class CarsComponent implements OnInit {
       this.carService.addCar(result.data).subscribe(
         res => {
           console.log("addCar res: " + JSON.stringify(res))
-          this.cars.push(res);
+          this.carService.getCars().subscribe(
+            data => {
+              this.cars = data;
+              console.dir(data)
+            },
+            error => console.dir(error),
+            () => {console.log('loaded all cars')}
+          );
         },
         error => console.log(error)
       );
@@ -230,7 +245,7 @@ export class CarsComponent implements OnInit {
     });
     dialogRef.componentInstance.event.subscribe((result) => {
       console.dir(result)
-      this.carService.addCar(result.data).subscribe(
+      this.carService.editCar(result.data).subscribe(
         res => {
           console.log("editCar res: " + JSON.stringify(res))
           this.carService.getCars().subscribe(
