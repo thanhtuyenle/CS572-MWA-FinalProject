@@ -5,10 +5,24 @@
   gdAreas.lt-md="header | side | content | footer"
   gdRows.lt-md="auto auto auto auto">
   <div gdArea="header">
-    <h5 class="title">Price: {{car.price | currency}}</h5>
+    <h5 class="title">Price: {{car?.price | currency}}</h5>
    </div>
-  <div gdArea="content">
-    <img src="../../assets/cars/sedan_lexus.jpg" class="img-card"/>
+   
+  <div gdArea="content" *ngIf="mode == 'short'">
+      <a [routerLink]="['/cardetails/', car._id]">
+        <img src="../../assets/cars/sedan_lexus.jpg" class="img-card"/>
+      </a>
+      <h6 >Car details:</h6>
+      <ul>
+        <li><b>Make:&nbsp;</b> {{car.make?.name}}</li>
+        <li><b>Model:&nbsp;</b> {{car.model?.name}}</li>
+        <li><b>Year:&nbsp;</b> {{car.year}}</li>
+        <li><b>Mileage:&nbsp;</b> {{car.mileage}}</li>
+      </ul>
+  </div>
+
+  <div gdArea="content" *ngIf="mode == 'detail' && car">
+    <img src="../../assets/cars/sedan_lexus.jpg" class="img-detail-card"/>
     <mat-list>
         <h6 >Car details:</h6>
         <mat-list-item><mat-icon >arrow_right</mat-icon><b>Make:&nbsp;</b> {{car.make?.name}}</mat-list-item>
@@ -21,10 +35,10 @@
         <mat-list-item><mat-icon >arrow_right</mat-icon><b>Price:&nbsp;</b> {{car.price | currency}}</mat-list-item>
         <mat-list-item><mat-icon >arrow_right</mat-icon><b>Zipcode:&nbsp;</b> {{car.zipCode}}</mat-list-item>
 
-        <h3 matSubheader>Dealer</h3>
+        <h3 matSubheader >Dealer</h3>
         <mat-list-item><mat-icon >arrow_right</mat-icon> {{car.dealer?.name}}</mat-list-item>
         <mat-list-item><mat-icon >arrow_right</mat-icon><b>Phone:&nbsp;</b> {{car.dealer?.phone}}</mat-list-item>
-        <mat-list-item *ngIf="car.dealer?.website">
+        <mat-list-item *ngIf="car?.dealer?.website">
           <mat-icon >arrow_right</mat-icon>
           <a href="{{car.dealer?.website}}" target="_blank"> Website</a>
         </mat-list-item>
