@@ -10,7 +10,9 @@ export class AppComponent  implements AfterViewChecked {
   public favoriteCounter: string = '0';
   constructor(public auth: AuthService, private changeDetector: ChangeDetectorRef
               ) { 
-                this.favoriteCounter = localStorage.getItem('counterFav')
+                // this.favoriteCounter = localStorage.getItem('counterFav')
+                setInterval(() => this.favoriteCounter = localStorage.getItem('counterFav'), 500)
+                // setInterval(() => this.favoriteCounter = (parseInt(this.favoriteCounter) + 1).toString(), 500)
               }
     ngAfterViewChecked() {
       this.changeDetector.detectChanges();
