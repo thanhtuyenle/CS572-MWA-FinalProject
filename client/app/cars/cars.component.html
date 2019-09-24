@@ -60,12 +60,41 @@
                   </option>
               </select>
 
+              <select class="form-control mr-2" name="models" [(ngModel)]="car.model">
+                  <option [ngValue]="null" disabled selected>Select a model</option>
+                  <option *ngFor="let mod of allModels" [ngValue]="mod">
+                      {{ mod.name }}
+                  </option>
+              </select>
+
+              <select class="form-control mr-2" name="styles" [(ngModel)]="car.style">
+                  <option [ngValue]="null" disabled selected>Select a style</option>
+                  <option *ngFor="let sty of allStyles" [ngValue]="sty">
+                      {{ sty.name }}
+                  </option>
+              </select>
+
+              <select class="form-control mr-2" name="conditions" [(ngModel)]="car.condition">
+                  <option [ngValue]="null" disabled selected>Select a condition</option>
+                  <option *ngFor="let con of allConditions" [ngValue]="con">
+                      {{ con.name }}
+                  </option>
+              </select>
+
+              <select class="form-control mr-2" name="dealers" [(ngModel)]="car.dealer">
+                  <option [ngValue]="null" disabled selected>Select a dealer</option>
+                  <option *ngFor="let deal of allDealers" [ngValue]="deal">
+                      {{ deal.name }}
+                  </option>
+              </select>              
+
               <input class="form-control mr-2" type="number" name="year"
                      [(ngModel)]="car.year" placeholder="Year" min="0" required>
               <input class="form-control mr-2" type="number" name="price"
                      [(ngModel)]="car.price" placeholder="Price" min="0" required>
                 <input class="form-control mr-2" type="number" name="mileage"
                     [(ngModel)]="car.mileage" placeholder="Mileage" min="0" required>
+                <input type="file" (change)="onFileChange($event)"/>
                 <input class="form-control mr-2" type="text" name="zipCode"
                      [(ngModel)]="car.zipCode" placeholder="Zip code" required>
               <button class="btn btn-sm btn-primary mr-2" type="submit" [disabled]="!form.form.valid">
