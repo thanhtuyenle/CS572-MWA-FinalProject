@@ -57,7 +57,7 @@ export class CarService {
     return this.http.patch(`/api/car/${car._id}/${user._id}`,{}, { responseType: 'text' });
   }
   getFavoriteCars(userID): Observable<Car[]> {
-    return this.http.get<Car[]>(`/api/cars/${userID}`);
+    return this.http.get<Car[]>(`/api/protected/cars/${userID}`);
   }
 
   deleteCar(car: Car): Observable<any> {

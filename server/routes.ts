@@ -51,7 +51,7 @@ export default function setRoutes(app) {
   // save favorite car
   router.route('/car/:cid').patch(carCtrl.saveFollower);
   router.route('/car/:cid/:uid').patch(carCtrl.unsaveFollower);
-  router.route('/cars/:uid').get(carCtrl.getCarsByFollower);
+  router.route('/protected/cars/:uid').get(carCtrl.getCarsByFollower);
 
   // Apply the routes to our applicarion with the prefix /api
   app.use('/api', router);
