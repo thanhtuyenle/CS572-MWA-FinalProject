@@ -12,7 +12,7 @@ import { AddcarComponent } from '../addcar/addcar.component';
 
 @Component({
   selector: 'app-cars',
-  templateUrl: './cars.component2.html',
+  templateUrl: './cars.component.html',
   styleUrls: ['./cars.component.css']
 })
 export class CarsComponent implements OnInit {

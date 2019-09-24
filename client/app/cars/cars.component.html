@@ -1,128 +1,30 @@
-<!-- <app-loading [condition]="isLoading"></app-loading> -->
-
-<!-- <app-toast [message]="toast.message"></app-toast>  -->
-
-<!-- <div class="card mb-3" *ngIf="!isLoading">
-  <h4 class="card-header">Current cars ({{cars.length}})</h4>
-  <div class="card-body">
-    <table class="table table-bordered">
-      <thead class="thead-light">
-        <tr>
-          <th scope="col">Make</th>
-          <th scope="col">Model</th>
-          <th scope="col">Style</th>
-          <th scope="col">Condition</th>
-          <th scope="col">Dealer</th>
-          <th scope="col">Year</th>
-          <th scope="col">Price</th>
-          <th scope="col">Mileage</th>
-          <th scope="col">Image Path</th>
-          <th scope="col">Zip code</th>
-          <th scope="col">Actions</th>
-        </tr>
-      </thead>
-      <tbody *ngIf="cars.length === 0">
-        <tr>
-          <td colspan="4">There are no cars in the DB. Add a new car below.</td>
-        </tr>  
-      </tbody>
-      <tbody *ngIf="!isEditing">
-        <tr *ngFor="let car of cars">
-          <td>{{car.make?.name}}</td>
-          <td>{{car.model?.name}}</td>
-          <td>{{car.style?.name}}</td>
-          <td>{{car.condition?.name}}</td>
-          <td>{{car.dealer?.name}}</td>
-          <td>{{car.year}}</td>
-          <td>{{car.price}}</td>
-          <td>{{car.mileage}}</td>
-          <td><img class="imagesize" src="{{car.imagePath}}" alt="car image"/></td>
-          <td>{{car.zipCode}}</td>
-          <td>
-            <button class="btn btn-sm btn-primary" (click)="enableEditing(car)">
-              <i class="fa fa-pencil"></i> Edit
-            </button> 
-            <button class="btn btn-sm btn-danger ml-1" (click)="deleteCar(car)">
-              <i class="fa fa-trash"></i> Delete
-            </button>
-          </td>
-        </tr>  
-      </tbody>
-      <tbody *ngIf="isEditing">
-        <tr>
-          <td colspan="4">
-            <form class="form-inline" #form="ngForm" (ngSubmit)="editCar(car)">
-                            
-              <select class="form-control mr-2" name="makes" [(ngModel)]="car.make">
-                  <option [ngValue]="null" disabled selected>Select a make</option>
-                  <option *ngFor="let mk of allMakes" [ngValue]="mk">
-                      {{ mk.name }}
-                  </option>
-              </select>
-
-              <select class="form-control mr-2" name="models" [(ngModel)]="car.model">
-                  <option [ngValue]="null" disabled selected>Select a model</option>
-                  <option *ngFor="let mod of allModels" [ngValue]="mod">
-                      {{ mod.name }}
-                  </option>
-              </select>
-
-              <select class="form-control mr-2" name="styles" [(ngModel)]="car.style">
-                  <option [ngValue]="null" disabled selected>Select a style</option>
-                  <option *ngFor="let sty of allStyles" [ngValue]="sty">
-                      {{ sty.name }}
-                  </option>
-              </select>
-
-              <select class="form-control mr-2" name="conditions" [(ngModel)]="car.condition">
-                  <option [ngValue]="null" disabled selected>Select a condition</option>
-                  <option *ngFor="let con of allConditions" [ngValue]="con">
-                      {{ con.name }}
-                  </option>
-              </select>
-
-              <select class="form-control mr-2" name="dealers" [(ngModel)]="car.dealer">
-                  <option [ngValue]="null" disabled selected>Select a dealer</option>
-                  <option *ngFor="let deal of allDealers" [ngValue]="deal">
-                      {{ deal.name }}
-                  </option>
-              </select>              
-
-              <input class="form-control mr-2" type="number" name="year"
-                     [(ngModel)]="car.year" placeholder="Year" min="0" required>
-              <input class="form-control mr-2" type="number" name="price"
-                     [(ngModel)]="car.price" placeholder="Price" min="0" required>
-                <input class="form-control mr-2" type="number" name="mileage"
-                    [(ngModel)]="car.mileage" placeholder="Mileage" min="0" required>
-                <input type="file" (change)="onFileChange($event)"/>
-                <input class="form-control mr-2" type="text" name="zipCode"
-                     [(ngModel)]="car.zipCode" placeholder="Zip code" required>
-              <button class="btn btn-sm btn-primary mr-2" type="submit" [disabled]="!form.form.valid">
-                <i class="fa fa-floppy-o"></i> Save
-              </button>
-              <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
-                <i class="fa fa-times"></i> Cancel
-              </button>
-            </form>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+<div>
+  <br>
+  <div class="container">
+      <div class="container">
+        <div fxLayout="column" fxLayoutGap="20px" fxLayout.gt-md="row"  fxLayoutAlign="space-around center" class="content">
+            <div class="blocks">
+                <button button="submit" mat-raised-button color="primary" (click)="openAddDialog()">
+                    <mat-icon>add</mat-icon> Add Car
+                </button>
+            </div>
+      </div>
   </div>
-</div> -->
-
-<div class="container">
+  <br>
+  <div class="container">
   <div fxLayout="row" fxLayoutAlign="center center" class="content">
     <mat-card class="card"  *ngIf="!isEditing">
       <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
         <h3>List of cars</h3>
       </mat-card-title>
       <mat-card-content>
-        <div class="example-container mat-elevation-z8">
+        <div class="list-container mat-elevation-z8">
           <mat-table #table [dataSource]="cars">
             <ng-container matColumnDef="image">
               <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
-              <mat-cell *matCellDef="let car"> <img class="imgview" src="{{car.imagePath}}" alt="car image"/> </mat-cell>
+              <mat-cell *matCellDef="let car"> 
+                <img class="imgview" src="{{car.imagePath}}" alt="car image"/> 
+              </mat-cell>
             </ng-container>
             <ng-container matColumnDef="make">
               <mat-header-cell *matHeaderCellDef> Make </mat-header-cell>
@@ -164,8 +66,8 @@
               <mat-header-cell *matHeaderCellDef></mat-header-cell>
               <mat-cell *matCellDef="let car">
                 <a
-                  type="button" (click)="enableEditing(car)">
-                  <mat-icon class="icon">Edit</mat-icon>
+                  type="button" (click)="openEditDialog(car)">
+                  <mat-icon>edit</mat-icon>
                 </a>
               </mat-cell>
             </ng-container>
@@ -174,7 +76,7 @@
               <mat-cell *matCellDef="let car">
                 <a
                   type="button" (click)="deleteCar(car)">
-                  <mat-icon class="icon">Delete</mat-icon>
+                  <mat-icon>delete</mat-icon>
                 </a>
               </mat-cell>
             </ng-container>
@@ -182,139 +84,10 @@
 
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
           </mat-table>
+          <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
         </div>
       </mat-card-content>
     </mat-card>
   </div>
 </div>
-
-<!-- <div class="card" *ngIf="!isEditing">
-  <h4 class="card-header">Add new car</h4>
-  <div class="card-body">
-    <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addCar()">      
-        <select class="form-control mr-2" name="makes" formControlName="make">
-            <option [ngValue]="null" disabled selected>Select a make</option>
-            <option *ngFor="let mk of allMakes" [ngValue]="mk">
-                {{ mk.name }}
-            </option>
-        </select>
-
-        <select class="form-control mr-2" name="models" formControlName="model">
-            <option [ngValue]="null" disabled selected>Select a model</option>
-            <option *ngFor="let mod of allModels" [ngValue]="mod">
-                {{ mod.name }}
-            </option>
-        </select>
-
-        <select class="form-control mr-2" name="styles" formControlName="style">
-            <option [ngValue]="null" disabled selected>Select a style</option>
-            <option *ngFor="let sty of allStyles" [ngValue]="sty">
-                {{ sty.name }}
-            </option>
-        </select>
-
-        <select class="form-control mr-2" name="conditions" formControlName="condition">
-            <option [ngValue]="null" disabled selected>Select a condition</option>
-            <option *ngFor="let con of allConditions" [ngValue]="con">
-                {{ con.name }}
-            </option>
-        </select>
-
-        <select class="form-control mr-2" name="dealers" formControlName="dealer">
-            <option [ngValue]="null" disabled selected>Select a dealer</option>
-            <option *ngFor="let deal of allDealers" [ngValue]="deal">
-                {{ deal.name }}
-            </option>
-        </select>
-      <input class="form-control mr-2" type="number" name="year"
-             formControlName="year" placeholder="Year" min="0">
-      <input class="form-control mr-2" type="number" name="price"
-             formControlName="price" placeholder="Price" min="0">
-        <input class="form-control mr-2" type="number" name="mileage"
-             formControlName="mileage" placeholder="Mileage" min="0"> -->
-        <!-- <input class="form-control mr-2" type="text" name="imagePath"
-             formControlName="imagePath" placeholder="Image Path">        -->
-
-        <!--<input type="file" (change)="onFileChange($event)"/>
-
-      <input class="form-control mr-2" type="text" name="zipCode"
-             formControlName="zipCode" placeholder="Zip code">
-      <button class="btn btn-primary" type="submit" [disabled]="!addCarForm.valid">
-        <i class="fa fa-plus"></i> Add
-      </button>
-    </form>
-  </div>
-</div> -->
-
-<div class="container" *ngIf="!isEditing">
-  <div fxLayout="row" fxLayoutAlign="center center" class="content">
-    <mat-card class="card"  *ngIf="!isEditing">
-      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
-        <h3>Add new car</h3>
-      </mat-card-title>
-      <mat-card-content>
-        <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addCar()"> 
-          <mat-form-field>
-              <mat-label>Select a Make</mat-label>
-              <mat-select formControlName="make">
-                  <mat-option *ngFor="let mk of allMakes" [value]="mk._id">
-                      {{ mk.name }}
-                  </mat-option>
-                </mat-select>
-          </mat-form-field>
-
-          <mat-form-field>
-              <mat-label>Select a Model</mat-label>
-              <mat-select formControlName="model">
-                <mat-option *ngFor="let mod of allModels" [value]="mod._id">
-                    {{ mod.name }}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-              <mat-label>Select a Style</mat-label>
-              <mat-select formControlName="style">
-                <mat-option *ngFor="let sty of allStyles" [value]="sty._id">
-                    {{ sty.name }}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-              <mat-label>Select a Condition</mat-label>
-              <mat-select formControlName="condition">
-                <mat-option *ngFor="let con of allConditions" [value]="con._id">
-                    {{ con.name }}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-              <mat-label>Select a Dealer</mat-label>
-              <mat-select formControlName="dealer">
-                <mat-option *ngFor="let deal of allDealers" [value]="deal._id">
-                    {{ deal.name }}
-                </mat-option>
-              </mat-select>
-          </mat-form-field>
-          <mat-form-field>
-              <input matInput placeholder="Year" formControlName="year">
-          </mat-form-field>
-          <mat-form-field>
-              <input matInput placeholder="Price" formControlName="price">
-          </mat-form-field>
-          <mat-form-field>
-              <input matInput placeholder="Mileage" formControlName="mileage">
-          </mat-form-field>
-          <!-- <mat-form-field>
-            <input matInput placeholder="Image Path"  formControlName="imagePath" (change)="onFileChange($event.target.files)"/>
-          </mat-form-field> -->
-          <mat-form-field>
-              <input matInput placeholder="ZipCode" formControlName="zipCode">
-          </mat-form-field>
-          <button mat-raised-button class="btn btn-primary" type="submit" [disabled]="!addCarForm.valid">
-              <mat-icon>add</mat-icon> Add
-          </button>
-        </form>
-      </mat-card-content>
-    </mat-card>
-  </div>
 </div>

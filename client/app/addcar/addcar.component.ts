@@ -52,6 +52,7 @@ export class AddcarComponent implements OnInit {
     if(this.data.originalData){
       const car = this.data.originalData;
       this.addCarForm = this.formBuilder.group({
+        _id: new FormControl(car._id, Validators.required),
         make: new FormControl(car.make._id, Validators.required),
         model: new FormControl(car.model._id, Validators.required),
         style: new FormControl(car.style._id, Validators.required),
