@@ -63,7 +63,7 @@ export class CarsComponent implements OnInit {
       year: this.year,
       price: this.price,
       mileage: this.mileage,
-      imagePath: [''],
+      //imagePath: [''],
       zipCode: this.zipCode      
     });
     // this.editCarForm = this.formBuilder.group({
@@ -109,7 +109,7 @@ export class CarsComponent implements OnInit {
 
 
   addCar() {  
-    this.upload();
+    //this.upload();
 
     this.carService.addCar(this.addCarForm.value).subscribe(
       res => {
