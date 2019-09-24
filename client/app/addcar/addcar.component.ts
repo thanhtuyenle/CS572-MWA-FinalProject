@@ -27,7 +27,9 @@ export class AddcarComponent implements OnInit {
   fileToUpload: File = null;
 
   addCarForm: FormGroup;
-
+  createFormControl(val) {
+    return new FormControl(val, Validators.required);
+  }
   make = new FormControl('', Validators.required);
   model = new FormControl('', Validators.required);
   style = new FormControl('', Validators.required);
@@ -46,18 +48,35 @@ export class AddcarComponent implements OnInit {
     public carService: CarService) { }
 
   ngOnInit() {
-    this.addCarForm = this.formBuilder.group({
-      make: this.make,
-      model: this.model,
-      style: this.style,
-      condition: this.condition,
-      dealer: this.dealer,
-      year: this.year,
-      price: this.price,
-      mileage: this.mileage,
-      // imagePath: new FormControl(''),
-      zipCode: this.zipCode      
-    });
+    console.dir(this.data.originalData)
+    if(this.data.originalData){
+      const car = this.data.originalData;
+      this.addCarForm = this.formBuilder.group({
+        make: new FormControl(car.make._id, Validators.required),
+        model: new FormControl(car.model._id, Validators.required),
+        style: new FormControl(car.style._id, Validators.required),
+        condition: new FormControl(car.condition._id, Validators.required),
+        dealer: new FormControl(car.dealer._id, Validators.required),
+        year: new FormControl(car.year, Validators.required),
+        price: new FormControl(car.price, Validators.required),
+        mileage: new FormControl(car.mileage, Validators.required),
+        // imagePath: new FormControl(''),
+        zipCode: new FormControl(car.zipCode, Validators.required),     
+      });
+    } else {
+      this.addCarForm = this.formBuilder.group({
+        make: this.make,
+        model: this.model,
+        style: this.style,
+        condition: this.condition,
+        dealer: this.dealer,
+        year: this.year,
+        price: this.price,
+        mileage: this.mileage,
+        // imagePath: new FormControl(''),
+        zipCode: this.zipCode      
+      });
+    }
     this.getAllModels();
   }
 
@@ -96,8 +115,20 @@ export class AddcarComponent implements OnInit {
 
   onSubmit(): void {
     console.log(this.addCarForm.value);
-    this.event.emit({data: this.addCarForm.value});
+    const data = this.transformData(this.addCarForm.value);
+    console.dir(data);
+    this.event.emit({data});
     this.dialogRef.close();
   }
 
+  transformData(obj): Car {
+    const newCar = {...obj,
+      make: this.allMakes.filter(m => m._id == obj.make)[0],
+      model: this.allModels.filter(m => m._id == obj.model)[0],
+      style: this.allStyles.filter(m => m._id == obj.style)[0],
+      condition: this.allConditions.filter(m => m._id == obj.condition)[0],
+      dealer: this.allDealers.filter(m => m._id == obj.dealer)[0]
+    }
+    return newCar;
+  }
 }

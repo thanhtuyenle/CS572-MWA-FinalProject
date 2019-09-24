@@ -195,7 +195,7 @@ export class CarsComponent implements OnInit {
   openAddDialog(): void {
     let dialogRef = this.dialog.open(AddcarComponent, {
       width: '600px',
-      data: {title: 'Add Post', originalData: null}
+      data: {title: 'Add Car', originalData: null}
     });
     dialogRef.componentInstance.event.subscribe((result) => {
       console.dir(result)
@@ -203,6 +203,29 @@ export class CarsComponent implements OnInit {
         res => {
           console.log("addCar res: " + JSON.stringify(res))
           this.cars.push(res);
+        },
+        error => console.log(error)
+      );
+    });
+  }
+  openEditDialog(car: Car): void {
+    let dialogRef = this.dialog.open(AddcarComponent, {
+      width: '600px',
+      data: {title: 'Edit Car', originalData: car}
+    });
+    dialogRef.componentInstance.event.subscribe((result) => {
+      console.dir(result)
+      this.carService.addCar(result.data).subscribe(
+        res => {
+          console.log("editCar res: " + JSON.stringify(res))
+          this.carService.getCars().subscribe(
+            data => {
+              this.cars = data;
+              console.dir(data)
+            },
+            error => console.dir(error),
+            () => {console.log('loaded all cars')}
+          );
         },
         error => console.log(error)
       );

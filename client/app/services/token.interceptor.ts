@@ -13,12 +13,12 @@ import { AuthService } from './auth.service';
 export class TokenInterceptor implements HttpInterceptor {
   constructor(public auth: AuthService) {}
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    console.log("Before TokenInterceptor " + JSON.stringify(request))
+    // console.log("Before TokenInterceptor " + JSON.stringify(request))
     request = request.clone(
         {setHeaders: {TokenAuthorization: `${this.auth.getToken()}`}}
         // {headers: request.headers.set('TokenAuthorization', `${this.auth.getToken()}`)}
     );
-    console.log("After TokenInterceptor " + JSON.stringify(request))
+    // console.log("After TokenInterceptor " + JSON.stringify(request))
     return next.handle(request);
   }
 }
