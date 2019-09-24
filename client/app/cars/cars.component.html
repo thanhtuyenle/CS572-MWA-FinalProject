@@ -2,7 +2,7 @@
 
 <!-- <app-toast [message]="toast.message"></app-toast>  -->
 
-<div class="card mb-3" *ngIf="!isLoading">
+<!-- <div class="card mb-3" *ngIf="!isLoading">
   <h4 class="card-header">Current cars ({{cars.length}})</h4>
   <div class="card-body">
     <table class="table table-bordered">
@@ -52,14 +52,6 @@
         <tr>
           <td colspan="4">
             <form class="form-inline" #form="ngForm" (ngSubmit)="editCar(car)">
-              <!-- <input class="form-control mr-2" type="text" name="name"
-                     [(ngModel)]="car.make.name" placeholder="Make" required> -->
-              <!-- <select class="form-control mr-2" name="makes" [(ngModel)] = "car.make">
-                <option [ngValue]="null" disabled selected>Select a make</option>
-                <option *ngFor="let mk of allMakes" [ngValue]="mk" [selected]="car.make?._id == mk._id">
-                    {{ mk.name }}
-                </option>
-              </select> -->
               <input class="form-control mr-2" type="number" name="year"
                      [(ngModel)]="car.year" placeholder="Year" min="0" required>
               <input class="form-control mr-2" type="number" name="price"
@@ -80,9 +72,86 @@
       </tbody>
     </table>
   </div>
+</div> -->
+
+<div class="container">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card class="card"  *ngIf="!isEditing">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <h3>List of cars</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="example-container mat-elevation-z8">
+          <mat-table #table [dataSource]="cars">
+            <ng-container matColumnDef="image">
+              <mat-header-cell *matHeaderCellDef> Image </mat-header-cell>
+              <mat-cell *matCellDef="let car"> <img class="imgview" src="{{car.imagePath}}" alt="car image"/> </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="make">
+              <mat-header-cell *matHeaderCellDef> Make </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.make?.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="model">
+              <mat-header-cell *matHeaderCellDef> Model </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.model?.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="style">
+              <mat-header-cell *matHeaderCellDef> Style </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.style?.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="condition">
+              <mat-header-cell *matHeaderCellDef> Condition </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.condition?.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="dealer">
+              <mat-header-cell *matHeaderCellDef> Dealer </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.dealer?.name}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="year">
+              <mat-header-cell *matHeaderCellDef> Year </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.year}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="price">
+              <mat-header-cell *matHeaderCellDef> Price </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.price}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="mileage">
+              <mat-header-cell *matHeaderCellDef> Mileage </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.mileage}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="zipcode">
+              <mat-header-cell *matHeaderCellDef> Zipcode </mat-header-cell>
+              <mat-cell *matCellDef="let car"> {{car.zipCode}} </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="edit">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let car">
+                <a
+                  type="button" (click)="enableEditing(car)">
+                  <mat-icon class="icon">Edit</mat-icon>
+                </a>
+              </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="delete">
+              <mat-header-cell *matHeaderCellDef></mat-header-cell>
+              <mat-cell *matCellDef="let car">
+                <a
+                  type="button" (click)="deleteCar(car)">
+                  <mat-icon class="icon">Delete</mat-icon>
+                </a>
+              </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+          </mat-table>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
 </div>
 
-<div class="card" *ngIf="!isEditing">
+<!-- <div class="card" *ngIf="!isEditing">
   <h4 class="card-header">Add new car</h4>
   <div class="card-body">
     <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addCar()">      
@@ -125,15 +194,86 @@
       <input class="form-control mr-2" type="number" name="price"
              formControlName="price" placeholder="Price" min="0">
         <input class="form-control mr-2" type="number" name="mileage"
-             formControlName="mileage" placeholder="Mileage" min="0">
+             formControlName="mileage" placeholder="Mileage" min="0"> -->
         <!-- <input class="form-control mr-2" type="text" name="imagePath"
              formControlName="imagePath" placeholder="Image Path">        -->
-        <input type="file" (change)="onFileChange($event.target.files)"/>
+        <!-- <input type="file" (change)="onFileChange($event.target.files)"/>
       <input class="form-control mr-2" type="text" name="zipCode"
              formControlName="zipCode" placeholder="Zip code">
       <button class="btn btn-primary" type="submit" [disabled]="!addCarForm.valid">
         <i class="fa fa-plus"></i> Add
       </button>
     </form>
+  </div>
+</div> -->
+
+<div class="container" *ngIf="!isEditing">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card class="card"  *ngIf="!isEditing">
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <h3>Add new car</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <form class="form-inline" [formGroup]="addCarForm" (ngSubmit)="addCar()"> 
+          <mat-form-field>
+              <mat-label>Select a Make</mat-label>
+              <mat-select formControlName="make">
+                  <mat-option *ngFor="let mk of allMakes" [value]="mk._id">
+                      {{ mk.name }}
+                  </mat-option>
+                </mat-select>
+          </mat-form-field>
+
+          <mat-form-field>
+              <mat-label>Select a Model</mat-label>
+              <mat-select formControlName="model">
+                <mat-option *ngFor="let mod of allModels" [value]="mod._id">
+                    {{ mod.name }}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+              <mat-label>Select a Style</mat-label>
+              <mat-select formControlName="style">
+                <mat-option *ngFor="let sty of allStyles" [value]="sty._id">
+                    {{ sty.name }}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+              <mat-label>Select a Condition</mat-label>
+              <mat-select formControlName="condition">
+                <mat-option *ngFor="let con of allConditions" [value]="con._id">
+                    {{ con.name }}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+              <mat-label>Select a Dealer</mat-label>
+              <mat-select formControlName="dealer">
+                <mat-option *ngFor="let deal of allDealers" [value]="deal._id">
+                    {{ deal.name }}
+                </mat-option>
+              </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Year" formControlName="year">
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Price" formControlName="price">
+          </mat-form-field>
+          <mat-form-field>
+              <input matInput placeholder="Mileage" formControlName="mileage">
+          </mat-form-field>
+          <!-- <input type="file" (change)="onFileChange($event.target.files)"/> -->
+          <mat-form-field>
+              <input matInput placeholder="ZipCode" formControlName="zipCode">
+          </mat-form-field>
+          <button mat-raised-button class="btn btn-primary" type="submit" [disabled]="!addCarForm.valid">
+              <mat-icon>add</mat-icon> Add
+          </button>
+        </form>
+      </mat-card-content>
+    </mat-card>
   </div>
 </div>
