@@ -27,16 +27,34 @@ export class AccountComponent implements OnInit {
     Validators.minLength(3),
     Validators.maxLength(100)
   ]);
+
+  password = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6)
+  ]);
+  verifyPassword = new FormControl('', [
+    Validators.required,
+    Validators.minLength(6)
+  ]);
+
+  getPasswordErrorMessage() {
+    return this.accountForm.controls['password'].hasError('required') ? 'Password is required' :
+        this.accountForm.controls['password'].hasError('minlength') ? 'Required length is at least 6 characters' :
+           '';
+  }
   constructor(private formBuilder: FormBuilder,private router: Router,private auth: AuthService, private userService: UserService) { }
 
   ngOnInit() {
     
     this.accountForm = this.formBuilder.group({
       username: this.username,
-      email: this.email
-      // password: this.password,
-      // verifyPassword: this.verifyPassword
-    })
+      email: this.email,
+      password: this.password,
+      verifyPassword: this.verifyPassword
+    }, {
+      validator: this.confirmPasswordValidator('password', 'verifyPassword')
+    }
+    );
     this.getUser();
   }
 
@@ -48,6 +66,24 @@ export class AccountComponent implements OnInit {
     )
   }
 
+  confirmPasswordValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+        const control = formGroup.controls[controlName];
+        const matchingControl = formGroup.controls[matchingControlName];
+
+        if (matchingControl.errors && !matchingControl.errors.mustMatch) {
+            // return if another validator has already found an error on the matchingControl
+            return;
+        }
+
+        // set error on matchingControl if validation fails
+        if (control.value !== matchingControl.value) {
+            matchingControl.setErrors({ mustMatch: true });
+        } else {
+            matchingControl.setErrors(null);
+        }
+    }
+  }
   save(user: User){
     this.userService.editUser(user).subscribe(
       res => {console.log('account settings saved!')
