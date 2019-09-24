@@ -10,6 +10,7 @@ import { User } from '../shared/models/user.model';
 // import { map } from 'rxjs/operators';
 // import 'rxjs/add/operator/map';
 import { map } from 'rxjs/operators';
+import { CarService } from './car.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,7 @@ export class AuthService {
   currentUser: User = new User();
 
   constructor(private userService: UserService,
+              private carService: CarService,
               private router: Router,
               private jwtHelper: JwtHelperService) {
     const token = localStorage.getItem('token');
@@ -40,6 +42,13 @@ export class AuthService {
         localStorage.setItem('token', res.token);
         const decodedUser = this.decodeUserFromToken(res.token);
         this.setCurrentUser(decodedUser);
+        this.carService.getFavoriteCars(decodedUser._id).subscribe(
+          data => {
+            localStorage.setItem('counterFav', data.length > 0 ? data.length.toString() : '0');
+          },
+          error => console.dir(error),
+          () => {console.log('loggedin loaded counter for favorite cars.'); console.log(localStorage.getItem('counterFav'))}
+        );
         return this.loggedIn;
       }
     ));
@@ -47,6 +56,7 @@ export class AuthService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('counterFav');
     this.loggedIn = false;
     this.isAdmin = false;
     this.currentUser = new User();

@@ -122,51 +122,36 @@
             <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
 
             <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
-
-            <!-- <div fxLayout="column wrap" fxLayoutGap="40px">
-                <div fxLayout="row wrap" fxFlex>
-                  <div fxFlex><strong>Make:</strong></div>
-                  <div fxFlex>{{car.make?.name}}</div>
-                </div>
-              </div> -->
-            
           </mat-table>
         </div>
       </mat-card-content>
     </mat-card>
-
-    <tbody *ngIf="isEditing">
-        <tr>
-          <img src="{{car.imagePath}}" alt="car image"/>
-        </tr>
-        <tr>
-          <ul>
-            <li>Make: {{car.make?.name}}</li>
-            <li>Model: {{car.model?.name}}</li>
-            <li>Style: {{car.style?.name}}</li>
-            <li>Condition: {{car.condition?.name}}</li>
-            <li>Year: {{car.year}}</li>
-            <li>Mileage: {{car.mileage}}</li>
-            <li>Price: {{car.price}} $</li>
-           <li>Zipcode: {{car.zipCode}}</li>
-          </ul>
-        </tr>
-        <tr>
-            <td colspan="4">
-              <form class="form-inline" #form="ngForm" (ngSubmit)="editCar(car)">
-                <button class="btn btn-sm btn-primary mr-2" type="submit" *ngIf="auth.loggedIn">
-                  <i class="fa fa-floppy-o"></i> Save Favorite Car
-                </button>
-                <button class="btn btn-sm btn-warning" (click)="cancelEditing()">
-                  <i class="fa fa-times"></i> Back
-                </button>
-              </form>
-            </td>
-          </tr>
- 
-    </tbody>
-   
-
   </div>
 </div>
 
+<div class="container" *ngIf="isEditing">
+  <div fxLayout="row" fxLayoutAlign="center center" class="content">
+    <mat-card class="card" >
+      <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
+        <h3>View Car in details</h3>
+      </mat-card-title>
+      <mat-card-content>
+        <div class="example-container mat-elevation-z8">
+              <div 
+                  fxLayout="row wrap" 
+                  fxLayout.lt-sm="column" 
+                  fxLayoutGap="32px" 
+                  fxLayoutAlign="flex-start">
+                      <app-card class="noborder" [car]="car"
+                          fxFlex="0 1 calc(33.3% - 32px)"
+                          fxFlex.lt-md="0 1 calc(50% - 32px)"
+                          fxFlex.lt-sm="100%"
+                          >
+                      </app-card>
+              </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+
+  </div>
+</div>
