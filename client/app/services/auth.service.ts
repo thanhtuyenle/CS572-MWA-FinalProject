@@ -30,6 +30,10 @@ export class AuthService {
     }
   }
 
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
+
   login(emailAndPassword) {
     return this.userService.login(emailAndPassword).pipe(map(
         (res: any) => {
@@ -57,8 +61,8 @@ export class AuthService {
     this.loggedIn = true;
     this.currentUser._id = decodedUser._id;
     this.currentUser.username = decodedUser.username;
-    //this.currentUser.role = decodedUser.role;
-    //decodedUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
+    this.currentUser.role = decodedUser.role;
+    this.currentUser.role === 'admin' ? this.isAdmin = true : this.isAdmin = false;
     //delete decodedUser.role;
   }
 

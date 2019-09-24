@@ -23,7 +23,7 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'login', component: LoginComponent },
   { path: 'logout', component: LogoutComponent },
-  { path: 'cars/protected', component: CarsComponent, canActivate: [AdminGuard] },  
+  { path: 'cars/admin', component: CarsComponent, canActivate: [AdminGuard]},  
   { path: 'favorite', component: FavoritecarsComponent },
   { path: 'usercars', component: UsercarsComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },

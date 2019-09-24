@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { JwtModule } from '@auth0/angular-jwt';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 //modules
 import { SharedModule } from './shared/shared.module';
@@ -44,6 +44,7 @@ import { CardComponent } from './card/card.component';
 
 import { AdminGuard } from './services/adminGuard.service';
 import { FavoritecarsComponent } from './favoritecars/favoritecars.component';
+import { TokenInterceptor } from './services/token.interceptor';
 
 
 
@@ -111,7 +112,9 @@ export function tokenGetter() {
     MatBadgeModule,
     MatListModule],
   // providers: [UserService,AuthService],
-  providers: [UserService,AuthService,AuthGuardLogin, CarService, AdminGuard],
+  providers: [UserService,AuthService,AuthGuardLogin, CarService, AdminGuard, 
+    {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
+  ],
 
   bootstrap: [AppComponent]
 })

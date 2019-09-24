@@ -31,12 +31,12 @@ export default function setRoutes(app) {
   // Cars
   router.route('/cars').get(carCtrl.getAll);
   router.route('/cars/count').get(carCtrl.count);
-  router.route('/car').post(carCtrl.insert);
+  router.route('/admin/car').post(carCtrl.insert);
   router.route('/car/:id').get(carCtrl.get);
   router.route('/cars/:makeId/:modelId/:zipcode').get(carCtrl.search);
   router.route('/cars/:makeId/:modelId/').get(carCtrl.search);
-  router.route('/car/:id').put(carCtrl.update);
-  router.route('/car/:id').delete(carCtrl.delete);
+  router.route('/admin/car/:id').put(carCtrl.update);
+  router.route('/admin/car/:id').delete(carCtrl.delete);
 
   // Users
   router.route('/login').post(userCtrl.login);

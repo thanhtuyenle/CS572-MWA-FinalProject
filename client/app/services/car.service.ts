@@ -25,7 +25,7 @@ export class CarService {
 
   addCar(car: Car): Observable<Car> {
       console.log("Add car: " + JSON.stringify(car))
-    return this.http.post<Car>('/api/car', car);
+    return this.http.post<Car>('/api/admin/car', car);
   }
 
   uploadFile(formData: FormData): Observable<any> {
@@ -41,7 +41,7 @@ export class CarService {
   }
 
   editCar(car: Car): Observable<any> {
-    return this.http.put(`/api/car/${car._id}`, car, { responseType: 'text' });
+    return this.http.put(`/api/admin/car/${car._id}`, car, { responseType: 'text' });
   }
   saveFavoriteCar(car: Car, user: User): Observable<any> {
     // console.dir(car)
@@ -58,7 +58,7 @@ export class CarService {
   }
 
   deleteCar(car: Car): Observable<any> {
-    return this.http.delete(`/api/car/${car._id}`, { responseType: 'text' });
+    return this.http.delete(`/api/admin/car/${car._id}`, { responseType: 'text' });
   }
 
   getMakes(): Observable<Make[]> {

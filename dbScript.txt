@@ -36,3 +36,5 @@ db.dealers.insert({_id:"1", name:"Fesler Auto Mall",address:"1922 Highway 34, Fa
 db.dealers.insert({_id:"2", name:"Vaughn Automotive",address:"1311 Vaughn Dr, Ottumwa, IA 52501", phone:'(641) 575-0092', website:'http://www.vaughnautomotive.com'})
 db.dealers.insert({_id:"3", name:"Washington Auto Center",address:"1701 E WASHINGTON ST, WASHINGTON, IA 52353", phone:'(319) 458-4023', website:'http://www.washingtonautocenter.com'})
 
+
+db.users.insert({"username":"admin", "email":"admin@mum.edu", "password":"123456", "role":"admin"})
