@@ -7,10 +7,12 @@ import { Style } from '../shared/models/style.model';
 import { Model } from '../shared/models/model.model';
 import { Condition } from '../shared/models/condition.model';
 import { Dealer } from '../shared/models/dealer.model';
+import { MatDialog } from '@angular/material';
+import { AddcarComponent } from '../addcar/addcar.component';
 
 @Component({
   selector: 'app-cars',
-  templateUrl: './cars.component.html',
+  templateUrl: './cars.component2.html',
   styleUrls: ['./cars.component.css']
 })
 export class CarsComponent implements OnInit {
@@ -47,25 +49,25 @@ export class CarsComponent implements OnInit {
   displayedColumns = ["image","make", "model", "style","condition","dealer","year","price","mileage","zipcode","edit","delete"];
 
   constructor(private carService: CarService,
-              private formBuilder: FormBuilder
+              private formBuilder: FormBuilder, public dialog: MatDialog
               /*public toast: ToastComponent*/) { }
 
   ngOnInit() {    
     this.getCars();
     this.getAllModels();
 
-    this.addCarForm = this.formBuilder.group({
-      make: this.make,
-      model: this.model,
-      style: this.style,
-      condition: this.condition,
-      dealer: this.dealer,
-      year: this.year,
-      price: this.price,
-      mileage: this.mileage,
-      imagePath: [''],
-      zipCode: this.zipCode      
-    });
+    // this.addCarForm = this.formBuilder.group({
+    //   make: this.make,
+    //   model: this.model,
+    //   style: this.style,
+    //   condition: this.condition,
+    //   dealer: this.dealer,
+    //   year: this.year,
+    //   price: this.price,
+    //   mileage: this.mileage,
+    //   imagePath: [''],
+    //   zipCode: this.zipCode      
+    // });
     // this.editCarForm = this.formBuilder.group({
     //   make: this.make,
     //   model: this.model,
@@ -190,4 +192,20 @@ export class CarsComponent implements OnInit {
 
   }
 
+  openAddDialog(): void {
+    let dialogRef = this.dialog.open(AddcarComponent, {
+      width: '600px',
+      data: {title: 'Add Post', originalData: null}
+    });
+    dialogRef.componentInstance.event.subscribe((result) => {
+      console.dir(result)
+      this.carService.addCar(result.data).subscribe(
+        res => {
+          console.log("addCar res: " + JSON.stringify(res))
+          this.cars.push(res);
+        },
+        error => console.log(error)
+      );
+    });
+  }
 }

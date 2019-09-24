@@ -26,6 +26,7 @@ import {
   MatSelectModule,
   MatGridListModule,
   MatBadgeModule,
+  MatPaginatorModule,
 } from '@angular/material';
 import {FlexLayoutModule} from '@angular/flex-layout';
 import { AuthGuardLogin } from './services/auth-guard-login.service';
@@ -45,6 +46,7 @@ import { CardComponent } from './card/card.component';
 import { AdminGuard } from './services/adminGuard.service';
 import { FavoritecarsComponent } from './favoritecars/favoritecars.component';
 import { TokenInterceptor } from './services/token.interceptor';
+import { AddcarComponent } from './addcar/addcar.component';
 
 
 
@@ -65,7 +67,8 @@ export function tokenGetter() {
     CardComponent,
     UsercarsComponent,
     HomeComponent,
-    FavoritecarsComponent
+    FavoritecarsComponent,
+    AddcarComponent
   ],
   imports: [
     BrowserModule,
@@ -87,6 +90,7 @@ export function tokenGetter() {
     MatSelectModule,
     MatGridListModule,
     MatBadgeModule,
+    MatPaginatorModule,
 
     AppRoutingModule,
     SharedModule,
@@ -110,12 +114,16 @@ export function tokenGetter() {
     MatSelectModule,
     MatGridListModule,
     MatBadgeModule,
+    MatPaginatorModule,
     MatListModule],
   // providers: [UserService,AuthService],
   providers: [UserService,AuthService,AuthGuardLogin, CarService, AdminGuard, 
     {provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true}
   ],
 
+  entryComponents: [
+    AddcarComponent
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

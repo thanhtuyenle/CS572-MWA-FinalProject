@@ -25,7 +25,6 @@ const routes: Routes = [
   { path: 'logout', component: LogoutComponent },
   { path: 'cars/admin', component: CarsComponent, canActivate: [AdminGuard]},  
   { path: 'favorite', component: FavoritecarsComponent },
-  { path: 'usercars', component: UsercarsComponent }, 
   { path: 'cardetails/:cid', component: UsercarsComponent },
   { path: 'account', component: AccountComponent, canActivate: [AuthGuardLogin] },
 ];
