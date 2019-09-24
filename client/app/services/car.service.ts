@@ -28,9 +28,9 @@ export class CarService {
     return this.http.post<Car>('/api/admin/car', car);
   }
 
-  uploadFile(formData: FormData): Observable<any> {
-    console.log("uploadFile: ")
-  return this.http.post('/api/upload', formData);
+  uploadFile(file): Observable<any> {
+    console.log("uploadFile: " + JSON.stringify(file))
+  return this.http.post('/api/admin/upload', file);
 }
 
   searchCars(makeId, modelId, zipcode): Observable<Car[]> {
@@ -57,7 +57,7 @@ export class CarService {
     return this.http.patch(`/api/car/${car._id}/${user._id}`,{}, { responseType: 'text' });
   }
   getFavoriteCars(userID): Observable<Car[]> {
-    return this.http.get<Car[]>(`/api/cars/${userID}`);
+    return this.http.get<Car[]>(`/api/protected/cars/${userID}`);
   }
 
   deleteCar(car: Car): Observable<any> {

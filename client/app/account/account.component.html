@@ -73,20 +73,20 @@
                       </mat-error>
                   </mat-form-field>
                 </div>
-              <!-- <div class="row">
-                  <mat-form-field>
-                      <input matInput class="form-control" type="password" name="password"
-                      formControlName="password" placeholder="Password">
-                      <mat-error *ngIf="registerForm.get('password').errors">{{ getPasswordErrorMessage() }}</mat-error>
-                  </mat-form-field>
-              </div> -->
-              <!-- <div class="row">
-                  <mat-form-field>
-                      <input matInput class="form-control" type="password" name="verifyPassword"
-                      formControlName="verifyPassword" placeholder="Verify Password" >
-                      <mat-error *ngIf="registerForm.get('verifyPassword').errors?.mustMatch">Passwords do not match</mat-error>
-                  </mat-form-field>
-              </div> -->
+                <div class="row">
+                    <mat-form-field>
+                        <input matInput class="form-control" type="password" name="password"
+                        formControlName="password" placeholder="Password" [(ngModel)]="user.password">
+                        <mat-error *ngIf="accountForm.get('password').errors">{{ getPasswordErrorMessage() }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div class="row">
+                    <mat-form-field>
+                        <input matInput class="form-control" type="password" name="verifyPassword"
+                        formControlName="verifyPassword" placeholder="Verify Password">
+                        <mat-error *ngIf="accountForm.get('verifyPassword').errors?.mustMatch">Passwords do not match</mat-error>
+                    </mat-form-field>
+                </div>
                 <button mat-raised-button class="btn btn-primary" type="submit" [disabled]="!accountForm.valid">
                     <i class="fa fa-user-plus"></i> Save
                 </button>

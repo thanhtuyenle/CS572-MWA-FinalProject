@@ -61,4 +61,17 @@ export default class CarCtrl extends BaseCtrl {
       return res.status(400).json({ error: err.message });
     }
   }
+
+  uploadImage = async(req, res)=>{ 
+    try{
+      var file = req.body;
+      console.log("uploadImage" + file.name)
+      console.log("req.body" + JSON.stringify(req.body));
+      res.sendStatus(200);
+    }   
+    catch(err){
+      return res.status(400).json({ error: err.message });
+    }
+    
+  }
 }
