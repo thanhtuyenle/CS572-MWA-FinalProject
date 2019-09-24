@@ -11,6 +11,7 @@ import { AuthService } from '../services/auth.service';
 })
 export class CardComponent implements OnInit {
   // public car: Car = new Car()
+  @Input() mode: string = "short"
   @Input() car: Car
   @Output() favoriteChange = new EventEmitter();
   public isFavorite: boolean
@@ -18,10 +19,14 @@ export class CardComponent implements OnInit {
   constructor(private carService: CarService, private auth: AuthService) { }
 
   ngOnInit() {
+    
     console.log(this.car)
-    const followers = this.car.followers.filter(u => u._id == this.auth.currentUser._id)
-    this.isFavorite = followers.length > 0
-    console.log(followers)
+    if(this.car) {
+      const followers = this.car.followers.filter(u => u._id == this.auth.currentUser._id)
+      this.isFavorite = followers.length > 0
+      console.log(followers)
+
+    }
     this.isLoggedIn = this.auth.loggedIn
   }
   updateCounter() {    

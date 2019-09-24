@@ -3,8 +3,9 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Car } from '../shared/models/car.model';
 import { CarService } from '../services/car.service';
 
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-usercars',
@@ -13,82 +14,98 @@ import { AuthService } from '../services/auth.service';
 })
 export class UsercarsComponent implements OnInit {
 
-  car = new Car();
-  cars: Car[] = [];
-  isLoading = true;
-  isEditing = false;
-  isViewDetails = false;
+  // cars: Car[] = [];
+  // isLoading = true;
+  // isEditing = false;
+  // isViewDetails = false;
 
-  addCarForm: FormGroup;
+  // addCarForm: FormGroup;
   // make = new FormControl('', Validators.required);
-  year = new FormControl('', Validators.required);
-  price = new FormControl('', Validators.required);
-  zipCode = new FormControl('', Validators.required);
+  // year = new FormControl('', Validators.required);
+  // price = new FormControl('', Validators.required);
+  // zipCode = new FormControl('', Validators.required);
 
-  displayedColumns = ["image","make", "model", "style","condition","year","price","view"];
+  // displayedColumns = ["image","make", "model", "style","condition","year","price","view"];
   //dataSource: Car[] = [];
+  public car : Car;
+  public cid : string;
+  private subscription: Subscription;
   constructor(private carService: CarService,
               private formBuilder: FormBuilder,public auth: AuthService
-              /*public toast: ToastComponent*/) { }
+              ,private activatedRoute: ActivatedRoute, private router: Router) {
+                this.subscription = activatedRoute.params.subscribe(
+                  (params: any) => {
+                    this.cid = params['cid'];
+                    this.carService.getCarById(this.cid).subscribe(
+                      data => { this.car = data; console.dir(data)},
+                      error => console.dir(error),
+                      () => {console.log('loaded detail car')})
+                  }
+                );
+               }
 
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
+  }
+            
   ngOnInit() {
-    this.getCars();
-    this.addCarForm = this.formBuilder.group({
-      // make: this.make,
-      year: this.year,
-      price: this.price,
-      zipCode: this.zipCode
-    });
+    // this.getCars();
+    // this.addCarForm = this.formBuilder.group({
+    //   // make: this.make,
+    //   year: this.year,
+    //   price: this.price,
+    //   zipCode: this.zipCode
+    // });
   }
 
-  getCars() {
-    this.carService.getCars().subscribe(
-      data => {this.cars = data;
-                  //this.dataSource = this.cars;
-                  },
-      error => console.log(error),
-      () => this.isLoading = false
-    );
-  }
+  // getCars() {
+  //   this.carService.getCars().subscribe(
+  //     data => {this.cars = data;
+  //                 //this.dataSource = this.cars;
+  //                 },
+  //     error => console.log(error),
+  //     () => this.isLoading = false
+  //   );
+  // }
 
-  addCar() {
-    this.carService.addCar(this.addCarForm.value).subscribe(
-      res => {
-        this.cars.push(res);
-        this.addCarForm.reset();
-        // this.toast.setMessage('item added successfully.', 'success');
-      },
-      error => console.log(error)
-    );
-  }
+  // // addCar() {
+  // //   this.carService.addCar(this.addCarForm.value).subscribe(
+  // //     res => {
+  // //       this.cars.push(res);
+  // //       this.addCarForm.reset();
+  // //       // this.toast.setMessage('item added successfully.', 'success');
+  // //     },
+  // //     error => console.log(error)
+  // //   );
+  // // }
 
-  enableViewDetails(car: Car) {
-    console.log("enable view details")
-    console.log(this.car);
-    this.isEditing = true;
-    this.car = car;
-    this.isViewDetails = true;
-  }
+  // enableViewDetails(car: Car) {
+  //   console.log("enable view details")
+  //   console.log(this.car);
+  //   this.isEditing = true;
+  //   this.car = car;
+  //   this.isViewDetails = true;
+  // }
 
-  cancelEditing() {
-    this.isEditing = false;
-    this.car = new Car();
-    // this.toast.setMessage('item editing cancelled.', 'warning');
-    // reload the Cars to reset the editing
-    this.getCars();
-    this.isViewDetails = false;
-  }
+  // cancelEditing() {
+  //   this.isEditing = false;
+  //   this.car = new Car();
+  //   // this.toast.setMessage('item editing cancelled.', 'warning');
+  //   // reload the Cars to reset the editing
+  //   this.getCars();
+  //   this.isViewDetails = false;
+  // }
 
-  editCar(car: Car) {
-    this.carService.editCar(car).subscribe(
-      () => {
-        this.isEditing = false;
-        this.car = car;
-        // this.toast.setMessage('item edited successfully.', 'success');
-      },
-      error => console.log(error)
-    );
-  }
+  // editCar(car: Car) {
+  //   this.carService.editCar(car).subscribe(
+  //     () => {
+  //       this.isEditing = false;
+  //       this.car = car;
+  //       // this.toast.setMessage('item edited successfully.', 'success');
+  //     },
+  //     error => console.log(error)
+  //   );
+  // }
 
   // deleteCar(car: Car) {
   //   if (window.confirm('Are you sure you want to permanently delete this item?')) {

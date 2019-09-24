@@ -10,8 +10,27 @@
     padding: 32px;
     border: 1px solid black;
     border-radius: 8px;
+    margin-top: 15px;
   }
   .img-card {
-    width: 240px;
+    width: 220px;
     height: auto;
+  }
+  .img-detail-card {
+    width: 300px;
+    height: auto;
+  }
+  .details {
+    width: 220px;
+  }
+  .title {
+    color: indigo
+  }
+  .demo-2 {
+
+  }
+  .car-list-item {
+    border: 0px;
+    padding: 0px;
+    margin: 0px;
   }

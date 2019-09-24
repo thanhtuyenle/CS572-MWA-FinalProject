@@ -71,7 +71,7 @@
 <!--  </div>-->
 <!--</div>-->
 
-
+<!-- 
 
 <div class="container">
   <div fxLayout="row" fxLayoutAlign="center center" class="content">
@@ -127,30 +127,31 @@
       </mat-card-content>
     </mat-card>
   </div>
-</div>
+</div> -->
 
-<div class="container" *ngIf="isEditing">
+<!-- <div class="container" *ngIf="isEditing"> -->
+  <div class="container">
   <div fxLayout="row" fxLayoutAlign="center center" class="content">
     <mat-card class="card" >
       <mat-card-title fxLayout.gt-xs="row" fxLayout.xs="column">
         <h3>View Car in details</h3>
       </mat-card-title>
-      <mat-card-content>
-        <div class="example-container mat-elevation-z8">
-              <div 
+      <!-- <mat-card-content> -->
+        <!-- <div class="example-container mat-elevation-z8"> -->
+              <!-- <div 
                   fxLayout="row wrap" 
                   fxLayout.lt-sm="column" 
                   fxLayoutGap="32px" 
-                  fxLayoutAlign="flex-start">
-                      <app-card class="noborder" [car]="car"
+                  fxLayoutAlign="flex-start"> -->
+                      <app-card class="noborder" [car]="car" [mode]="'detail'"
                           fxFlex="0 1 calc(33.3% - 32px)"
                           fxFlex.lt-md="0 1 calc(50% - 32px)"
                           fxFlex.lt-sm="100%"
                           >
                       </app-card>
-              </div>
-        </div>
-      </mat-card-content>
+              <!-- </div> -->
+        <!-- </div> -->
+      <!-- </mat-card-content> -->
     </mat-card>
 
   </div>

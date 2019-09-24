@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   allMakes: Make[] = []
   allModels: Model[] = []
   cars: Car[] = []
+
   constructor(private carService: CarService, private formBuilder: FormBuilder)  { }
 
   zipcode = new FormControl('', [
@@ -23,11 +24,12 @@ export class HomeComponent implements OnInit {
   ]);
   ngOnInit() {
     this.searchCarForm = this.formBuilder.group({
-      make: ['', Validators.required],
-      model: ['', Validators.required],
+      make: ['ALL', Validators.required],
+      model: ['ALL', Validators.required],
       zipcode: this.zipcode
     });
     this.getAllModels();
+    this.getAllCars();
   }
 
   getAllModels(){
@@ -43,7 +45,7 @@ export class HomeComponent implements OnInit {
     );
   }
 
-  getCars() {
+  getAllCars() {
     this.carService.getCars().subscribe(
       data => {this.cars = data;
       console.dir(data)},
@@ -52,8 +54,6 @@ export class HomeComponent implements OnInit {
     );
   }
   search() {
-     //this.getCars()
-
     this.carService.searchCars(this.searchCarForm.get('make').value,
      this.searchCarForm.get('model').value, this.searchCarForm.get('zipcode').value
     ).subscribe(

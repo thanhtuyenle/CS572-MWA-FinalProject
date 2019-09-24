@@ -40,6 +40,9 @@ export class CarService {
     return this.http.get<Car>(`/api/car/${car._id}`);
   }
 
+  getCarById(cid: string): Observable<Car> {
+    return this.http.get<Car>(`/api/car/${cid}`);
+  }
   editCar(car: Car): Observable<any> {
     return this.http.put(`/api/admin/car/${car._id}`, car, { responseType: 'text' });
   }
