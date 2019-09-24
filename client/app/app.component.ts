@@ -7,7 +7,11 @@ import { AuthService } from './services/auth.service';
 })
 export class AppComponent  implements AfterViewChecked {
   title = 'carmanagement';
-  constructor(public auth: AuthService, private changeDetector: ChangeDetectorRef) { }
+  public favoriteCounter: string = '0';
+  constructor(public auth: AuthService, private changeDetector: ChangeDetectorRef
+              ) { 
+                this.favoriteCounter = localStorage.getItem('counterFav')
+              }
     ngAfterViewChecked() {
       this.changeDetector.detectChanges();
     }

@@ -23,12 +23,22 @@ export class CardComponent implements OnInit {
     console.log(followers)
     this.isLoggedIn = this.auth.loggedIn
   }
+  updateCounter() {    
+    this.carService.getFavoriteCars(this.auth.currentUser._id).subscribe(
+      data => {
+        localStorage.setItem('counterFav', data.length > 0 ? data.length.toString() : '0');
+      },
+      error => console.dir(error),
+      () => {console.log('updated counter for favorite cars.'); console.log(localStorage.getItem('counterFav'))}
+    );
+  }
   saveCar() {
     console.log('save favorite car started')
     this.carService.saveFavoriteCar(this.car, this.auth.currentUser).subscribe(
       () => {
         console.log('updated success')
         this.isFavorite = true
+        this.updateCounter()
       },
       error => console.log(error)
     );
@@ -39,6 +49,7 @@ export class CardComponent implements OnInit {
       () => {
         console.log('unsave car for user success')
         this.isFavorite = false
+        this.updateCounter()
       },
       error => console.log(error)
     );

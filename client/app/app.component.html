@@ -109,7 +109,8 @@
             </li>
             <li *ngIf="auth.loggedIn">
               <a routerLink="/favorite" routerLinkActive="active">
-                  <mat-icon class="icon" matBadge="15" matBadgeColor="warn">stars</mat-icon>
+                  <mat-icon class="icon" *ngIf="favoriteCounter != '0'" [matBadge]="favoriteCounter" matBadgeColor="warn">stars</mat-icon>
+                  <mat-icon class="icon" *ngIf="favoriteCounter == '0'">stars</mat-icon>
                   <span class="label"></span>
               </a>
             </li>
