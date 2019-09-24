@@ -29,6 +29,7 @@ export class CarsComponent implements OnInit {
 
   //for upload image
   fileToUpload: File = null;
+  buf = null;
 
   addCarForm: FormGroup;
   editCarForm: FormGroup;
@@ -41,7 +42,7 @@ export class CarsComponent implements OnInit {
   year = new FormControl('', Validators.required);
   price = new FormControl('', Validators.required);
   mileage = new FormControl('', Validators.required);
-  imagePath = new FormControl('', Validators.required);
+  // imagePath = new FormControl('', Validators.required);
   zipCode = new FormControl('', Validators.required);
 
   constructor(private carService: CarService,
@@ -61,7 +62,7 @@ export class CarsComponent implements OnInit {
       year: this.year,
       price: this.price,
       mileage: this.mileage,
-      imagePath: [''],
+      imagePath: [null, Validators.required],//this.buf,//[''],
       zipCode: this.zipCode      
     });
     // this.editCarForm = this.formBuilder.group({
@@ -80,16 +81,29 @@ export class CarsComponent implements OnInit {
 
   //upload image
 
-  onFileChange(files: FileList) {
-    this.fileToUpload = files.item(0);
-    //
+  onFileChange(event) {
+    
+    this.fileToUpload = event.target.files[0];
+    console.log("onFileChange before reader: " + this.fileToUpload.name + " " + JSON.stringify(this.fileToUpload))
+    
+    let reader = new FileReader();
+    reader.onload = () => {
+      // this.imagePath = reader.result;
+      this.addCarForm.patchValue({
+        imagePath: reader.result
+     });
+    };
+    reader.readAsDataURL(this.fileToUpload);
+    console.log("onFileChange afer reader: " + this.fileToUpload.name + " " + JSON.stringify(this.fileToUpload))
+
   }
 
   upload() {
     let formData = new FormData();    
     formData.append("uploads", this.fileToUpload, this.fileToUpload.name);
-   
-    this.carService.uploadFile(formData).subscribe(
+
+    console.log("In upload(): " + JSON.stringify(this.fileToUpload))
+    this.carService.uploadFile(/*{"name": "vantest"}*/this.buf).subscribe(
       res => console.log("uploadFile res: " + JSON.stringify(res))
     )
 }
@@ -107,7 +121,7 @@ export class CarsComponent implements OnInit {
 
 
   addCar() {  
-    this.upload();
+    // this.upload();
 
     this.carService.addCar(this.addCarForm.value).subscribe(
       res => {
@@ -134,6 +148,7 @@ export class CarsComponent implements OnInit {
   }
 
   editCar(car: Car) {
+    console.log("editCar: " + JSON.stringify(car))
     this.carService.editCar(car).subscribe(
       () => {
         this.isEditing = false;

@@ -37,6 +37,7 @@ export default function setRoutes(app) {
   router.route('/cars/:makeId/:modelId/').get(carCtrl.search);
   router.route('/admin/car/:id').put(carCtrl.update);
   router.route('/admin/car/:id').delete(carCtrl.delete);
+  router.route('/admin/upload').post(carCtrl.uploadImage);
 
   // Users
   router.route('/login').post(userCtrl.login);

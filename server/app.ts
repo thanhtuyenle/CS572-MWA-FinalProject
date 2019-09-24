@@ -25,37 +25,37 @@ if (process.env.NODE_ENV === 'test') {
 }
 
 var tokenMiddleware = function (req, res, next){
-  console.log("Enter tokenMiddleware")
-  console.log("req.headers: " + JSON.stringify(req.headers))
+  // console.log("Enter tokenMiddleware")
+  // console.log("req.headers: " + JSON.stringify(req.headers))
   var token = req.headers.tokenauthorization;
-  console.log("tokenauthorization: " + token)
+  // console.log("tokenauthorization: " + token)
   var decoded = jwt.verify(token, process.env.SECRET_TOKEN);
-  console.log("Decoded role: " + JSON.stringify(decoded) + ' ' + decoded.username + ' ' + decoded.role) // bar
+  // console.log("Decoded role: " + JSON.stringify(decoded) + ' ' + decoded.username + ' ' + decoded.role) // bar
   if(!decoded){//if(!token || token === 'null'){
-    console.log("res: 403")
+    // console.log("res: 403")
     res.status(403).send({ success: false, message: "Failed to authenticate user." })    
   }
   else
   {
-    console.log("preparing next()")
+    // console.log("preparing next()")
     return next();    
   }
     
 }
 var adminMiddleware = function (req, res, next){
-  console.log("Enter adminMiddleware")
-  console.log("req.headers: " + JSON.stringify(req.headers))
+  // console.log("Enter adminMiddleware")
+  // console.log("req.headers: " + JSON.stringify(req.headers))
   var token = req.headers.tokenauthorization;
-  console.log("tokenauthorization: " + token)
+  // console.log("tokenauthorization: " + token)
   var decoded = jwt.verify(token, process.env.SECRET_TOKEN);
-  console.log("Decoded role: " + JSON.stringify(decoded) + ' ' + decoded.user.username + ' ' + decoded.user.role) // bar
+  // console.log("Decoded role: " + JSON.stringify(decoded) + ' ' + decoded.user.username + ' ' + decoded.user.role) // bar
   if(!decoded || !decoded.user || !decoded.user.role || decoded.user.role !== 'admin'){//if(!token || token === 'null'){
-    console.log("res: 403")
+    // console.log("res: 403")
     res.status(403).send({ success: false, message: "Failed to authenticate admin." })    
   }
   else
   {
-    console.log("preparing next()")
+    // console.log("preparing next()")
     return next();    
   }
     

@@ -60,6 +60,12 @@
                     {{ mk.name }}
                 </option>
               </select> -->
+              <select class="form-control mr-2" name="makes" [(ngModel)]="car.make">
+                  <option [ngValue]="null" disabled selected>Select a make</option>
+                  <option *ngFor="let mk of allMakes" [ngValue]="mk">
+                      {{ mk.name }}
+                  </option>
+              </select>
               <input class="form-control mr-2" type="number" name="year"
                      [(ngModel)]="car.year" placeholder="Year" min="0" required>
               <input class="form-control mr-2" type="number" name="price"
@@ -128,7 +134,7 @@
              formControlName="mileage" placeholder="Mileage" min="0">
         <!-- <input class="form-control mr-2" type="text" name="imagePath"
              formControlName="imagePath" placeholder="Image Path">        -->
-        <input type="file" (change)="onFileChange($event.target.files)"/>
+        <input type="file" (change)="onFileChange($event)"/>
       <input class="form-control mr-2" type="text" name="zipCode"
              formControlName="zipCode" placeholder="Zip code">
       <button class="btn btn-primary" type="submit" [disabled]="!addCarForm.valid">
