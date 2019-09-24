@@ -44,6 +44,8 @@ export class CarsComponent implements OnInit {
   imagePath = new FormControl('', Validators.required);
   zipCode = new FormControl('', Validators.required);
 
+  displayedColumns = ["image","make", "model", "style","condition","dealer","year","price","mileage","zipcode","edit","delete"];
+
   constructor(private carService: CarService,
               private formBuilder: FormBuilder
               /*public toast: ToastComponent*/) { }
