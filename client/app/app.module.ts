@@ -38,17 +38,16 @@ import { CarsComponent } from './cars/cars.component';
 import { AccountComponent } from './account/account.component';
 import { CarService } from './services/car.service';
 import { UsercarsComponent } from './usercars/usercars.component';
-
 import { HomeComponent } from './home/home.component';
 import { CardComponent } from './card/card.component';
 import { FavoritecarsComponent } from './favoritecars/favoritecars.component';
 
+// Redux module
+import { NgRedux, NgReduxModule } from '@angular-redux/store';
 
 export function tokenGetter() {
   return localStorage.getItem('token');
 }
-//   return localStorage.getItem('token');
-// }
 
 @NgModule({
   declarations: [
@@ -83,6 +82,9 @@ export function tokenGetter() {
     MatSelectModule,
     MatGridListModule,
     MatBadgeModule,
+
+    //import Redux
+    NgReduxModule,
 
     AppRoutingModule,
     SharedModule,
