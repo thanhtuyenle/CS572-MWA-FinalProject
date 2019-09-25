@@ -10,7 +10,8 @@
    
   <div gdArea="content" *ngIf="mode == 'short'">
       <a [routerLink]="['/cardetails/', car._id]">
-        <img src="../../assets/cars/sedan_lexus.jpg" class="img-card"/>
+        <!-- <img src="../../assets/cars/sedan_lexus.jpg" class="img-card"/> -->
+        <img class="img-card" src="{{car.imagePath}}" alt="car image"/> 
       </a>
       <h6 >Car details:</h6>
       <ul>
@@ -22,9 +23,10 @@
   </div>
 
   <div gdArea="content" *ngIf="mode == 'detail' && car">
-    <img src="../../assets/cars/sedan_lexus.jpg" class="img-detail-card"/>
+    <!-- <img src="../../assets/cars/sedan_lexus.jpg" class="img-detail-card"/> -->
+    <img class="img-detail-card" src="{{car.imagePath}}" alt="car image"/> 
     <mat-list>
-        <h6 >Car details:</h6>
+        <!-- <h6 >Car details:</h6> -->
         <mat-list-item><mat-icon >arrow_right</mat-icon><b>Make:&nbsp;</b> {{car.make?.name}}</mat-list-item>
         <mat-list-item><mat-icon >arrow_right</mat-icon><b>Model:&nbsp;</b> {{car.model?.name}}</mat-list-item>
         <mat-list-item><mat-icon >arrow_right</mat-icon><b>Style:&nbsp;</b> {{car.style?.name}}</mat-list-item>

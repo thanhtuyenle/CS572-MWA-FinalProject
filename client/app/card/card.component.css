@@ -19,6 +19,7 @@
   .img-detail-card {
     width: 300px;
     height: auto;
+    float: left;
   }
   .details {
     width: 220px;
